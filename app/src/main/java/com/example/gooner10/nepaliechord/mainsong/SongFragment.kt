@@ -3,14 +3,12 @@ package com.example.gooner10.nepaliechord.mainsong
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gooner10.nepaliechord.R
-
 import com.example.gooner10.nepaliechord.model.DummyContent
 import com.example.gooner10.nepaliechord.model.DummyContent.DummyItem
 
@@ -41,12 +39,8 @@ class SongFragment : Fragment() {
         // Set the adapter
         if (view is RecyclerView) {
             val context = view.getContext()
-            if (mColumnCount <= 1) {
-                view.layoutManager = LinearLayoutManager(context)
-            } else {
-                view.layoutManager = GridLayoutManager(context, mColumnCount)
-            }
-            view.adapter = MySongRecyclerViewAdapter(DummyContent.ITEMS, mListener)
+            view.layoutManager = LinearLayoutManager(context)
+            view.adapter = SongFragmentAdapter(DummyContent.ITEMS, mListener)
         }
         return view
     }
