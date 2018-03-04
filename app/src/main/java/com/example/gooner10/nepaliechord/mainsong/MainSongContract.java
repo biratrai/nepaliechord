@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface MainSongContract {
     interface MainSongView {
-        List<Song> displaySong();
+        void displaySong(List<Song> songList);
     }
 
     interface MainSongPresenter {
-        List<Song> fetchSong();
+        void fetchSong();
     }
 }
