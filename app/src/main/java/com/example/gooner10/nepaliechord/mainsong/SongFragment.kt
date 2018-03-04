@@ -24,12 +24,12 @@ import com.example.gooner10.nepaliechord.model.DummyContent.DummyItem
  * fragment (e.g. upon screen orientation changes).
  */
 class SongFragment : Fragment() {
-    // TODO: Customize parameters
-    private var mColumnCount = 1
-    private var mListener: OnListFragmentInteractionListener? = null
+    private val SONG_TITLE = "song-title"
+    private var listener: OnListFragmentInteractionListener? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments.getString(SONG_TITLE)
     }
 
     public override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -40,24 +40,19 @@ class SongFragment : Fragment() {
         if (view is RecyclerView) {
             val context = view.getContext()
             view.layoutManager = LinearLayoutManager(context)
-            view.adapter = SongFragmentAdapter(DummyContent.ITEMS, mListener)
+            view.adapter = SongFragmentAdapter(DummyContent.ITEMS, listener)
         }
         return view
     }
 
 
-    public override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context?) {
         super.onAttach(context)
-//        if (context is OnListFragmentInteractionListener) {
-//            mListener = context as OnListFragmentInteractionListener?
-//        } else {
-//            throw RuntimeException((context!!.toString() + " must implement OnListFragmentInteractionListener"))
-//        }
     }
 
-    public override fun onDetach() {
+    override fun onDetach() {
         super.onDetach()
-        mListener = null
+        listener = null
     }
 
     /**
@@ -70,20 +65,16 @@ class SongFragment : Fragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onListFragmentInteraction(item: DummyItem)
     }
 
     companion object {
+        private const val SONG_TITLE = "song-title"
 
-        // TODO: Customize parameter argument names
-        private val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        fun newInstance(): SongFragment {
+        fun newInstance(title: String): SongFragment {
             val fragment = SongFragment()
             val args = Bundle()
-//            args.putInt(ARG_COLUMN_COUNT,)
+            args.putString(SONG_TITLE, title)
             fragment.arguments = args
             return fragment
         }
