@@ -5,9 +5,10 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.example.gooner10.nepaliechord.R
+import com.example.gooner10.nepaliechord.model.Song
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainSongContract.MainSongView {
     private var adapterViewPager: FragmentPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
         adapterViewPager = MainActivityViewPagerAdapter(supportFragmentManager)
         viewPager.adapter = adapterViewPager
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
+    override fun displaySong(): MutableList<Song> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
