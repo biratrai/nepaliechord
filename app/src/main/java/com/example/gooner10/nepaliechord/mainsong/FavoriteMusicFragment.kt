@@ -2,16 +2,14 @@ package com.example.gooner10.nepaliechord.mainsong
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gooner10.nepaliechord.R
-
 import com.example.gooner10.nepaliechord.model.DummyContent
+import com.example.gooner10.nepaliechord.model.Song
 
 /**
  * A fragment representing a list of Items.
@@ -24,10 +22,7 @@ import com.example.gooner10.nepaliechord.model.DummyContent
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class FavoriteMusicFragment : Fragment() {
-
-    // TODO: Customize parameters
-    private val mColumnCount = 1
+class FavoriteMusicFragment : BaseFragment() {
 
     private var mListener: OnListFragmentInteractionListener? = null
 
@@ -43,16 +38,15 @@ class FavoriteMusicFragment : Fragment() {
         // Set the adapter
         if (view is RecyclerView) {
             val context = view.getContext()
-            if (mColumnCount <= 1) {
-                view.layoutManager = LinearLayoutManager(context)
-            } else {
-                view.layoutManager = GridLayoutManager(context, mColumnCount)
-            }
+            view.layoutManager = LinearLayoutManager(context)
             view.adapter = MyMusicRecyclerViewAdapter(DummyContent.ITEMS, mListener)
         }
         return view
     }
 
+    override fun setData(songList: List<Song>) {
+        // TODO set Data for favorite fragment
+    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

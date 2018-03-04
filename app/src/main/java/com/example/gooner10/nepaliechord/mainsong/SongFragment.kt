@@ -2,15 +2,16 @@ package com.example.gooner10.nepaliechord.mainsong
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.DummyContent
 import com.example.gooner10.nepaliechord.model.DummyContent.DummyItem
+import com.example.gooner10.nepaliechord.model.Song
 
 /**
  * A fragment representing a list of Items.
@@ -23,17 +24,18 @@ import com.example.gooner10.nepaliechord.model.DummyContent.DummyItem
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class SongFragment : Fragment() {
+class SongFragment : BaseFragment() {
+    private val TAG = SongFragment::class.java.simpleName
     private val SONG_TITLE = "song-title"
     private var listener: OnListFragmentInteractionListener? = null
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments.getString(SONG_TITLE)
     }
 
-    public override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                                     savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_song_list, container, false)
 
         // Set the adapter
@@ -45,6 +47,9 @@ class SongFragment : Fragment() {
         return view
     }
 
+    override fun setData(songList: List<Song>) {
+        Log.d(TAG, "song data received")
+    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
