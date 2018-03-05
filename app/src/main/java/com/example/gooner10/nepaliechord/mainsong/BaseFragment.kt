@@ -1,15 +1,7 @@
 package com.example.gooner10.nepaliechord.mainsong
 
-import android.content.Context
 import android.net.Uri
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-
-import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
 
 /**
@@ -20,25 +12,10 @@ import com.example.gooner10.nepaliechord.model.Song
  */
 abstract class BaseFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val textView = TextView(activity)
-        textView.setText(R.string.hello_blank_fragment)
-        return textView
-    }
-
     abstract fun setData(songList: List<Song>)
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
     }
 
     /**
