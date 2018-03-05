@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ import com.example.gooner10.nepaliechord.model.Song
  * fragment (e.g. upon screen orientation changes).
  */
 class FavoriteMusicFragment : BaseFragment() {
-
+    private val TAG = FavoriteMusicFragment::class.java.simpleName
     private var mListener: OnListFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +61,11 @@ class FavoriteMusicFragment : BaseFragment() {
     override fun onDetach() {
         super.onDetach()
         mListener = null
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        Log.d(TAG, "isVisibleToUser Favorite " + isVisibleToUser)
     }
 
     /**
