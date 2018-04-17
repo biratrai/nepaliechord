@@ -49,8 +49,8 @@ class MyMusicRecyclerViewAdapter(private val mValues: List<DummyContent.DummyIte
         var mItem: DummyContent.DummyItem? = null
 
         init {
-            mIdView = mView.findViewById<View>(R.id.id) as TextView
-            mContentView = mView.findViewById<View>(R.id.content) as TextView
+            mIdView = mView.findViewById<View>(R.id.song_title) as TextView
+            mContentView = mView.findViewById<View>(R.id.artist_name) as TextView
         }
 
         public override fun toString(): String {

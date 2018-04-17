@@ -15,7 +15,7 @@ import com.example.gooner10.nepaliechord.model.Song
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
  * specified [OnListFragmentInteractionListener].
  */
-class SongFragmentAdapter(private var mValues: ArrayList<Song>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<SongFragmentAdapter.ViewHolder>() {
+class SongFragmentAdapter(private var list: ArrayList<Song>, private val listener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<SongFragmentAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -24,27 +24,27 @@ class SongFragmentAdapter(private var mValues: ArrayList<Song>, private val mLis
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mItem = mValues[position]
-        holder.mIdView.text = mValues[position].artistName
-        holder.mContentView.text = mValues[position].lyrics
+        holder.mItem = list[position]
+        holder.mIdView.text = list[position].artistName
+        holder.mContentView.text = list[position].lyrics
 
         holder.mView.setOnClickListener {
-            mListener?.onListFragmentInteraction(holder.mItem!!)
+            listener?.onListFragmentInteraction(holder.mItem!!)
         }
     }
 
     public override fun getItemCount(): Int {
-        return mValues.size
+        return list.size
     }
 
     fun setData(songList: List<Song>) {
-        mValues = songList as ArrayList<Song>
+        list = songList as ArrayList<Song>
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.findViewById<View>(R.id.id) as TextView
-        val mContentView: TextView = mView.findViewById<View>(R.id.content) as TextView
+        val mIdView: TextView = mView.findViewById<View>(R.id.song_title) as TextView
+        val mContentView: TextView = mView.findViewById<View>(R.id.artist_name) as TextView
         var mItem: Song? = null
 
         public override fun toString(): String {
