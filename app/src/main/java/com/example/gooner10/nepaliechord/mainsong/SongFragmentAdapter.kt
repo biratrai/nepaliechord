@@ -28,15 +28,13 @@ class SongFragmentAdapter(private var mValues: ArrayList<Song>, private val mLis
         holder.mIdView.text = mValues[position].artistName
         holder.mContentView.text = mValues[position].lyrics
 
-        holder.mView.setOnClickListener(object : View.OnClickListener {
-            public override fun onClick(v: View) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem!!)
-                }
+        holder.mView.setOnClickListener {
+            if (null != mListener) {
+                // Notify the active callbacks interface (the activity, if the
+                // fragment is attached to one) that an item has been selected.
+                mListener.onListFragmentInteraction(holder.mItem!!)
             }
-        })
+        }
     }
 
     public override fun getItemCount(): Int {
