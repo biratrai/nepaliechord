@@ -9,13 +9,13 @@ import com.example.gooner10.nepaliechord.R
 
 import com.example.gooner10.nepaliechord.mainsong.SongFragment.OnListFragmentInteractionListener
 import com.example.gooner10.nepaliechord.model.DummyContent.DummyItem
+import com.example.gooner10.nepaliechord.model.Song
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
  * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
  */
-class SongFragmentAdapter(private val mValues: List<DummyItem>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<SongFragmentAdapter.ViewHolder>() {
+class SongFragmentAdapter(private var mValues: ArrayList<Song>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<SongFragmentAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,8 +25,8 @@ class SongFragmentAdapter(private val mValues: List<DummyItem>, private val mLis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mValues[position]
-        holder.mIdView.text = mValues[position].id
-        holder.mContentView.text = mValues[position].content
+        holder.mIdView.text = mValues[position].artistName
+        holder.mContentView.text = mValues[position].lyrics
 
         holder.mView.setOnClickListener(object : View.OnClickListener {
             public override fun onClick(v: View) {
@@ -43,15 +43,15 @@ class SongFragmentAdapter(private val mValues: List<DummyItem>, private val mLis
         return mValues.size
     }
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView
-        val mContentView: TextView
-        var mItem: DummyItem? = null
+    fun setData(songList: List<Song>) {
+        mValues = songList as ArrayList<Song>
+        notifyDataSetChanged()
+    }
 
-        init {
-            mIdView = mView.findViewById<View>(R.id.id) as TextView
-            mContentView = mView.findViewById<View>(R.id.content) as TextView
-        }
+    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
+        val mIdView: TextView = mView.findViewById<View>(R.id.id) as TextView
+        val mContentView: TextView = mView.findViewById<View>(R.id.content) as TextView
+        var mItem: Song? = null
 
         public override fun toString(): String {
             return super.toString() + " '" + mContentView.text + "'"
