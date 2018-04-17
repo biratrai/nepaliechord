@@ -24,16 +24,16 @@ class SongFragmentAdapter(private var list: ArrayList<Song>, private val listene
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mItem = list[position]
-        holder.mIdView.text = list[position].artistName
-        holder.mContentView.text = list[position].lyrics
+        holder.item = list[position]
+        holder.songTitleView.text = list[position].artistName
+        holder.artistNameView.text = list[position].lyrics
 
-        holder.mView.setOnClickListener {
-            listener?.onListFragmentInteraction(holder.mItem!!)
+        holder.view.setOnClickListener {
+            listener?.onListFragmentInteraction(holder.item!!)
         }
     }
 
-    public override fun getItemCount(): Int {
+    override fun getItemCount(): Int {
         return list.size
     }
 
@@ -42,13 +42,13 @@ class SongFragmentAdapter(private var list: ArrayList<Song>, private val listene
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.findViewById<View>(R.id.song_title) as TextView
-        val mContentView: TextView = mView.findViewById<View>(R.id.artist_name) as TextView
-        var mItem: Song? = null
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val songTitleView: TextView = view.findViewById<View>(R.id.song_title) as TextView
+        val artistNameView: TextView = view.findViewById<View>(R.id.artist_name) as TextView
+        var item: Song? = null
 
-        public override fun toString(): String {
-            return super.toString() + " '" + mContentView.text + "'"
+        override fun toString(): String {
+            return super.toString() + " '" + artistNameView.text + "'"
         }
     }
 }
