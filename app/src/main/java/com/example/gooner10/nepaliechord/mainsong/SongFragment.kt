@@ -9,8 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.gooner10.nepaliechord.R
-import com.example.gooner10.nepaliechord.model.DummyContent
-import com.example.gooner10.nepaliechord.model.DummyContent.DummyItem
 import com.example.gooner10.nepaliechord.model.Song
 
 /**
@@ -28,6 +26,8 @@ class SongFragment : BaseFragment() {
     private val TAG = SongFragment::class.java.simpleName
     private val SONG_TITLE = "song-title"
     private var listener: OnListFragmentInteractionListener? = null
+    private val songList = arrayListOf<Song>()
+    private var adapter: SongFragmentAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,18 +42,20 @@ class SongFragment : BaseFragment() {
         if (view is RecyclerView) {
             val context = view.getContext()
             view.layoutManager = LinearLayoutManager(context)
-            view.adapter = SongFragmentAdapter(DummyContent.ITEMS, listener)
+            view.adapter = SongFragmentAdapter(songList, listener)
+            adapter = view.adapter as SongFragmentAdapter
         }
         return view
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-        Log.d(TAG, "isVisibleToUser SongFragment " + isVisibleToUser)
+        Log.d(TAG, "isVisibleToUser SongFragment $isVisibleToUser")
     }
 
     override fun setData(songList: List<Song>) {
         Log.d(TAG, "song data received")
+        adapter?.setData(songList)
     }
 
     override fun onAttach(context: Context?) {
@@ -75,7 +77,7 @@ class SongFragment : BaseFragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: DummyItem)
+        fun onListFragmentInteraction(item: Song)
     }
 
     companion object {
