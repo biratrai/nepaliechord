@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), MainSongContract.MainSongView {
+
     private val TAG = MainActivity::class.java.simpleName
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
@@ -46,7 +47,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView {
         })
     }
 
-    override fun displaySong(songList: MutableList<Song>) {
+    override fun displaySong(songList: List<Song>) {
         Log.d(TAG, "songlist: " + songList)
         Log.d(TAG, "currentItem: " + viewPager.currentItem)
         Log.d(TAG, "current fragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
