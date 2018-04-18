@@ -21,27 +21,28 @@ import com.example.gooner10.nepaliechord.model.Song
  * Mandatory empty constructor for the fragment manager to instantiate the
  * fragment (e.g. upon screen orientation changes).
  */
-class FavoriteSongFragment : BaseFragment() {
-    private val TAG = FavoriteSongFragment::class.java.simpleName
+class AllSongFragment : BaseFragment() {
+    private val TAG = AllSongFragment::class.java.simpleName
+    private val SONG_TITLE = "song-title"
     private var listener: OnListFragmentInteractionListener? = null
-    private var adapter: MyMusicRecyclerViewAdapter? = null
     private val songList = arrayListOf<Song>()
+    private var adapter: SongFragmentAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        arguments.getString(SONG_TITLE)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.favorite_song_fragment, container, false)
+        val view = inflater!!.inflate(R.layout.all_song_fragment, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
             val context = view.getContext()
             view.layoutManager = LinearLayoutManager(context)
-            view.adapter = MyMusicRecyclerViewAdapter(songList, listener)
-            adapter = view.adapter as MyMusicRecyclerViewAdapter
+            view.adapter = SongFragmentAdapter(songList, listener)
+            adapter = view.adapter as SongFragmentAdapter
         }
         return view
     }
@@ -70,15 +71,12 @@ class FavoriteSongFragment : BaseFragment() {
     }
 
     companion object {
+        private const val SONG_TITLE = "song-title"
 
-        // TODO: Customize parameter argument names
-        private val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        fun newInstance(): FavoriteSongFragment {
-            val fragment = FavoriteSongFragment()
+        fun newInstance(title: String): AllSongFragment {
+            val fragment = AllSongFragment()
             val args = Bundle()
-//            args.putInt(ARG_COLUMN_COUNT,)
+            args.putString(SONG_TITLE, title)
             fragment.arguments = args
             return fragment
         }

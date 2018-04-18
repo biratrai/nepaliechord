@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.gooner10.nepaliechord.R
-import com.example.gooner10.nepaliechord.mainsong.SongFragment.OnListFragmentInteractionListener
+import com.example.gooner10.nepaliechord.mainsong.AllSongFragment.OnListFragmentInteractionListener
 import com.example.gooner10.nepaliechord.model.Song
 
 /**
@@ -17,7 +17,7 @@ class SongFragmentAdapter(private var list: ArrayList<Song>, private val listene
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_song, parent, false)
+                .inflate(R.layout.all_song_row, parent, false)
         return ViewHolder(view)
     }
 

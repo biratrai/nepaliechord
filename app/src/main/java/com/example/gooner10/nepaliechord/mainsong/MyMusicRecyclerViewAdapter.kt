@@ -16,13 +16,13 @@ import com.example.gooner10.nepaliechord.model.Song
  */
 class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<MyMusicRecyclerViewAdapter.ViewHolder>() {
 
-    public override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_music, parent, false)
+                .inflate(R.layout.favorite_song_row, parent, false)
         return ViewHolder(view)
     }
 
-    public override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = list[position]
         holder.songTitleView.text = list[position].artistName
         holder.artistNameView.text = list[position].lyrics
@@ -38,7 +38,7 @@ class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mList
         })
     }
 
-    public override fun getItemCount(): Int {
+    override fun getItemCount(): Int {
         return list.size
     }
 
@@ -52,7 +52,7 @@ class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mList
         val artistNameView: TextView = mView.findViewById<View>(R.id.favorite_artist_name) as TextView
         var item: Song? = null
 
-        public override fun toString(): String {
+        override fun toString(): String {
             return super.toString() + " '" + artistNameView.text + "'"
         }
     }

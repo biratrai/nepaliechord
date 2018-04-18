@@ -13,7 +13,7 @@ class MainActivityViewPagerAdapter(fm: FragmentManager) : SmartFragmentStatePage
     private val TAG = MainActivityViewPagerAdapter::class.java.simpleName
     override fun getItem(position: Int): Fragment? {
         when (position) {
-            0 -> return SongFragment.newInstance("Songs")
+            0 -> return AllSongFragment.newInstance("Songs")
             1 -> return FavoriteSongFragment.newInstance()
             else ->
                 Log.e(TAG, "Not defined")
