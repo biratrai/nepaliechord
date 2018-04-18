@@ -13,9 +13,9 @@ class MainSongActivityPresenter(private val songView: MainSongContract.MainSongV
     override fun fetchSong() {
 
         val songList = ArrayList<Song>()
-        for (i in 0..9) {
+        for (i in 1..9) {
             val song = Song(i.toString() + ") Sugam Pokhrel",
-                    i.toString() + ": Mero Sansar",
+                    ": Mero Sansar",
                     true,
                     1 + i)
             songList.add(song)
