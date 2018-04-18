@@ -14,7 +14,7 @@ class MainActivityViewPagerAdapter(fm: FragmentManager) : SmartFragmentStatePage
     override fun getItem(position: Int): Fragment? {
         when (position) {
             0 -> return SongFragment.newInstance("Songs")
-            1 -> return FavoriteMusicFragment.newInstance()
+            1 -> return FavoriteSongFragment.newInstance()
             else ->
                 Log.e(TAG, "Not defined")
         }
