@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.gooner10.nepaliechord.R
-
-import com.example.gooner10.nepaliechord.mainsong.FavoriteMusicFragment.OnListFragmentInteractionListener
-import com.example.gooner10.nepaliechord.model.DummyContent
+import com.example.gooner10.nepaliechord.mainsong.FavoriteSongFragment.OnListFragmentInteractionListener
+import com.example.gooner10.nepaliechord.model.Song
 
 /**
- * [RecyclerView.Adapter] that can display a [DummyItem] and makes a call to the
+ * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
  * specified [OnListFragmentInteractionListener].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyMusicRecyclerViewAdapter(private val mValues: List<DummyContent.DummyItem>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<MyMusicRecyclerViewAdapter.ViewHolder>() {
+class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<MyMusicRecyclerViewAdapter.ViewHolder>() {
 
     public override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -24,37 +23,37 @@ class MyMusicRecyclerViewAdapter(private val mValues: List<DummyContent.DummyIte
     }
 
     public override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.mItem = mValues[position]
-        holder.mIdView.text = mValues[position].id
-        holder.mContentView.text = mValues[position].content
+        holder.item = list[position]
+        holder.songTitleView.text = list[position].artistName
+        holder.artistNameView.text = list[position].lyrics
 
         holder.mView.setOnClickListener(object : View.OnClickListener {
             public override fun onClick(v: View) {
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem!!)
+                    mListener.onListFragmentInteraction(holder.item!!)
                 }
             }
         })
     }
 
     public override fun getItemCount(): Int {
-        return mValues.size
+        return list.size
+    }
+
+    fun setData(songList: List<Song>) {
+        list = songList as ArrayList<Song>
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView
-        val mContentView: TextView
-        var mItem: DummyContent.DummyItem? = null
-
-        init {
-            mIdView = mView.findViewById<View>(R.id.song_title) as TextView
-            mContentView = mView.findViewById<View>(R.id.artist_name) as TextView
-        }
+        val songTitleView: TextView = mView.findViewById<View>(R.id.favorite_song_title) as TextView
+        val artistNameView: TextView = mView.findViewById<View>(R.id.favorite_artist_name) as TextView
+        var item: Song? = null
 
         public override fun toString(): String {
-            return super.toString() + " '" + mContentView.text + "'"
+            return super.toString() + " '" + artistNameView.text + "'"
         }
     }
 }
