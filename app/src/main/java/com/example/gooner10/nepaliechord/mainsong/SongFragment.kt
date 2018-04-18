@@ -48,18 +48,9 @@ class SongFragment : BaseFragment() {
         return view
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        Log.d(TAG, "isVisibleToUser SongFragment $isVisibleToUser")
-    }
-
     override fun setData(songList: List<Song>) {
         Log.d(TAG, "song data received")
         adapter?.setData(songList)
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
     }
 
     override fun onDetach() {
