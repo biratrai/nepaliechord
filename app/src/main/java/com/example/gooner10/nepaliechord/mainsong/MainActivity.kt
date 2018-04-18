@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
+import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView {
         })
     }
 
+    @DebugLog
     override fun displaySong(songList: List<Song>) {
         Log.d(TAG, "songlist: $songList")
         Log.d(TAG, "currentItem: " + viewPager.currentItem)
