@@ -1,11 +1,13 @@
 package com.example.gooner10.nepaliechord.mainsong
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager.OnPageChangeListener
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.example.gooner10.nepaliechord.R
+import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
 import com.example.gooner10.nepaliechord.model.Song
 import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,8 +49,11 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
         })
     }
 
-    override fun onListFragmentInteraction(item: Song) {
-        Log.d(TAG, "Song clicked  $item.songTitle")
+    override fun onListFragmentInteraction(song: Song) {
+        Log.d(TAG, "Song clicked  $song.songTitle")
+        intent = Intent(this, SongDetailActivity::class.java)
+        intent.putExtra("Song", song)
+        startActivity(intent)
     }
 
     @DebugLog
