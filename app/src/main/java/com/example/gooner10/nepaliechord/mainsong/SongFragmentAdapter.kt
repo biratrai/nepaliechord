@@ -24,7 +24,7 @@ class SongFragmentAdapter(private var list: ArrayList<Song>, private val listene
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = list[position]
         holder.songTitleView.text = list[position].artistName
-        holder.artistNameView.text = list[position].lyrics
+        holder.artistNameView.text = list[position].songTitle
 
         holder.view.setOnClickListener {
             listener?.onListFragmentInteraction(holder.item!!)

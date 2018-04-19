@@ -25,7 +25,7 @@ class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mList
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = list[position]
         holder.songTitleView.text = list[position].artistName
-        holder.artistNameView.text = list[position].lyrics
+        holder.artistNameView.text = list[position].songTitle
 
         holder.mView.setOnClickListener(object : View.OnClickListener {
             public override fun onClick(v: View) {
