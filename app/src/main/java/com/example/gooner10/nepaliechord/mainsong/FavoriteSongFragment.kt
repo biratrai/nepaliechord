@@ -1,6 +1,7 @@
 package com.example.gooner10.nepaliechord.mainsong
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -41,6 +42,8 @@ class FavoriteSongFragment : BaseFragment() {
             val context = view.getContext()
             view.layoutManager = LinearLayoutManager(context)
             view.adapter = MyMusicRecyclerViewAdapter(songList, listener)
+            val dividerItemDecoration = DividerItemDecoration(getContext(), (view.layoutManager as LinearLayoutManager).orientation)
+            view.addItemDecoration(dividerItemDecoration)
             adapter = view.adapter as MyMusicRecyclerViewAdapter
         }
         return view
