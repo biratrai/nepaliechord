@@ -24,7 +24,7 @@ import com.example.gooner10.nepaliechord.model.Song
  */
 class FavoriteSongFragment : BaseFragment() {
     private val TAG = FavoriteSongFragment::class.java.simpleName
-    private var listener: OnListFragmentInteractionListener? = null
+    private var listener: OnFavoriteFragmentItemListener? = null
     private var adapter: MyMusicRecyclerViewAdapter? = null
     private val songList = arrayListOf<Song>()
 
@@ -68,7 +68,7 @@ class FavoriteSongFragment : BaseFragment() {
      *
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
-    interface OnListFragmentInteractionListener {
+    interface OnFavoriteFragmentItemListener {
         fun onListFragmentInteraction(item: Song)
     }
 

@@ -1,5 +1,6 @@
 package com.example.gooner10.nepaliechord.mainsong
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -25,7 +26,7 @@ import com.example.gooner10.nepaliechord.model.Song
 class AllSongFragment : BaseFragment() {
     private val TAG = AllSongFragment::class.java.simpleName
     private val SONG_TITLE = "song-title"
-    private var listener: OnListFragmentInteractionListener? = null
+    private var listener: OnAllSongFragmentItemListener? = null
     private val songList = arrayListOf<Song>()
     private var adapter: SongFragmentAdapter? = null
 
@@ -60,6 +61,14 @@ class AllSongFragment : BaseFragment() {
         listener = null
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is AllSongFragment.OnAllSongFragmentItemListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnAllSongFragmentItemListener")
+        }
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -69,7 +78,7 @@ class AllSongFragment : BaseFragment() {
      *
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
-    interface OnListFragmentInteractionListener {
+    interface OnAllSongFragmentItemListener {
         fun onListFragmentInteraction(item: Song)
     }
 
