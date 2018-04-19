@@ -11,8 +11,7 @@ import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), MainSongContract.MainSongView {
-
+class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSongFragment.OnAllSongFragmentItemListener, FavoriteSongFragment.OnFavoriteFragmentItemListener {
     private val TAG = MainActivity::class.java.simpleName
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
@@ -46,6 +45,10 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView {
                 Log.d(TAG, "Selected onPageScrollStateChanged position: $state")
             }
         })
+    }
+
+    override fun onListFragmentInteraction(item: Song) {
+        Log.d(TAG, "Song clicked  $item.songTitle")
     }
 
     @DebugLog
