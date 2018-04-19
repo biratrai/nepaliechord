@@ -1,5 +1,6 @@
 package com.example.gooner10.nepaliechord.mainsong
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
@@ -52,6 +53,15 @@ class FavoriteSongFragment : BaseFragment() {
     override fun setData(songList: List<Song>) {
         Log.d(TAG, "song data received")
         adapter?.setData(songList)
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is FavoriteSongFragment.OnFavoriteFragmentItemListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " must implement OnAllSongFragmentItemListener")
+        }
     }
 
     override fun onDetach() {
