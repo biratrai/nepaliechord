@@ -6,15 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.gooner10.nepaliechord.R
-import com.example.gooner10.nepaliechord.mainsong.FavoriteSongFragment.OnListFragmentInteractionListener
+import com.example.gooner10.nepaliechord.mainsong.FavoriteSongFragment.OnFavoriteFragmentItemListener
 import com.example.gooner10.nepaliechord.model.Song
 
 /**
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
- * specified [OnListFragmentInteractionListener].
+ * specified [OnFavoriteFragmentItemListener].
  * TODO: Replace the implementation with code for your data type.
  */
-class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mListener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<MyMusicRecyclerViewAdapter.ViewHolder>() {
+class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mListener: OnFavoriteFragmentItemListener?) : RecyclerView.Adapter<MyMusicRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -27,15 +27,9 @@ class MyMusicRecyclerViewAdapter(private var list: List<Song>, private val mList
         holder.songTitleView.text = list[position].artistName
         holder.artistNameView.text = list[position].songTitle
 
-        holder.mView.setOnClickListener(object : View.OnClickListener {
-            public override fun onClick(v: View) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.item!!)
-                }
-            }
-        })
+        holder.mView.setOnClickListener {
+            mListener?.onListFragmentInteraction(holder.item!!)
+        }
     }
 
     override fun getItemCount(): Int {
