@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.gooner10.nepaliechord.R
-import com.example.gooner10.nepaliechord.mainsong.AllSongFragment.OnListFragmentInteractionListener
+import com.example.gooner10.nepaliechord.mainsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.example.gooner10.nepaliechord.model.Song
 
 /**
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
- * specified [OnListFragmentInteractionListener].
+ * specified [OnAllSongFragmentItemListener].
  */
-class SongFragmentAdapter(private var list: ArrayList<Song>, private val listener: OnListFragmentInteractionListener?) : RecyclerView.Adapter<SongFragmentAdapter.ViewHolder>() {
+class SongFragmentAdapter(private var list: ArrayList<Song>, private val listener: OnAllSongFragmentItemListener?) : RecyclerView.Adapter<SongFragmentAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
