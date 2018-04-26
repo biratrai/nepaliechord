@@ -79,7 +79,7 @@ class AllSongFragment : BaseFragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnAllSongFragmentItemListener {
-        fun onListFragmentInteraction(item: Song)
+        fun onListFragmentInteraction(song: Song)
     }
 
     companion object {
