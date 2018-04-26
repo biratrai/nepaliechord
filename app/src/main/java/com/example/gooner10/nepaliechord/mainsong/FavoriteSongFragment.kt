@@ -29,14 +29,8 @@ class FavoriteSongFragment : BaseFragment() {
     private var adapter: MyMusicRecyclerViewAdapter? = null
     private val songList = arrayListOf<Song>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.favorite_song_fragment, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.favorite_song_fragment, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
