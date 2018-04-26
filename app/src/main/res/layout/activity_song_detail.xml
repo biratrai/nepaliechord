@@ -21,6 +21,7 @@
         android:layout_margin="8dp">
 
         <TextView
+            android:id="@+id/song_detail_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/song_detail_sample"
