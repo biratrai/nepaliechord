@@ -78,14 +78,9 @@ class FavoriteSongFragment : BaseFragment() {
 
     companion object {
 
-        // TODO: Customize parameter argument names
-        private val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
         fun newInstance(): FavoriteSongFragment {
             val fragment = FavoriteSongFragment()
             val args = Bundle()
-//            args.putInt(ARG_COLUMN_COUNT,)
             fragment.arguments = args
             return fragment
         }
