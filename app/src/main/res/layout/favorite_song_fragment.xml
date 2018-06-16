@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.example.gooner10.nepaliechord.mainsong.FavoriteSongFragment"
+    tools:context="com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment"
     tools:listitem="@layout/favorite_song_row" />
