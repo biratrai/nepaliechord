@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.util.Log
 import android.util.SparseArray
 import android.view.ViewGroup
+import com.example.gooner10.nepaliechord.BaseFragment
 
 import hugo.weaving.DebugLog
 
