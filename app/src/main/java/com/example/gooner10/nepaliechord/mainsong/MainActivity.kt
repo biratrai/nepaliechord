@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSongFragment.OnAllSongFragmentItemListener, FavoriteSongFragment.OnFavoriteFragmentItemListener {
-    private val TAG = MainActivity::class.java.simpleName
+
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
 
@@ -23,9 +23,8 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
         setContentView(R.layout.activity_main)
 
         viewPager.adapter = pagerAdapter
-//        slidingTabs.setupWithViewPager(viewPager)
 
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         viewPager.addOnPageChangeListener(object : OnPageChangeListener {
 
@@ -65,15 +64,27 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
         fragment.setData(songList)
     }
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
+                Log.i(TAG, "home")
+                viewPager.setCurrentItem(0, true)
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_favorite -> {
+                Log.i(TAG, "favorite")
+                viewPager.setCurrentItem(1, true)
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
+    }
+
+    // Used to define the constant
+    companion object{
+
+        private val TAG = MainActivity::class.java.simpleName
+
     }
 }
