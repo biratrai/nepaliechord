@@ -7,7 +7,9 @@ import android.support.v4.view.ViewPager.OnPageChangeListener
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.example.gooner10.nepaliechord.R
+import com.example.gooner10.nepaliechord.allsong.AllSongFragment
 import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
+import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
 import com.example.gooner10.nepaliechord.model.Song
 import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*

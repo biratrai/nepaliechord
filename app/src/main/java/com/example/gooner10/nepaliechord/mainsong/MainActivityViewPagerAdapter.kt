@@ -3,6 +3,8 @@ package com.example.gooner10.nepaliechord.mainsong
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.util.Log
+import com.example.gooner10.nepaliechord.allsong.AllSongFragment
+import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
 
 /**
  * Pager Adapter for ViewPager in [MainActivity]
