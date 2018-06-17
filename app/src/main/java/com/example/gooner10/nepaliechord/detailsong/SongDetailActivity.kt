@@ -14,5 +14,7 @@ class SongDetailActivity : AppCompatActivity() {
 
         val song = intent.getParcelableExtra<Song>("Song")
         songTitleName.text = song.songTitle
+        webView.settings.javaScriptEnabled = true
+        webView.loadUrl("file:///android_asset/song.html")
     }
 }
