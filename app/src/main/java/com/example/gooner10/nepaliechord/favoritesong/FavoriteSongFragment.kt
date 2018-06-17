@@ -9,8 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.BaseFragment
+import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
 
 /**
@@ -25,7 +25,6 @@ import com.example.gooner10.nepaliechord.model.Song
  * fragment (e.g. upon screen orientation changes).
  */
 class FavoriteSongFragment : BaseFragment() {
-    private val TAG = FavoriteSongFragment::class.java.simpleName
     private var listener: OnFavoriteFragmentItemListener? = null
     private var adapter: FavoriteSongAdapter? = null
     private val songList = arrayListOf<Song>()
@@ -78,6 +77,7 @@ class FavoriteSongFragment : BaseFragment() {
     }
 
     companion object {
+        private val TAG = FavoriteSongFragment::class.java.simpleName
 
         fun newInstance(): FavoriteSongFragment {
             val fragment = FavoriteSongFragment()
