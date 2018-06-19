@@ -1,6 +1,7 @@
 package com.example.gooner10.nepaliechord.detailsong
 
 import android.os.Bundle
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
@@ -22,13 +23,17 @@ class SongDetailActivity : AppCompatActivity() {
         favorite_icon_detail.setOnClickListener { v: View? ->
 
             Log.i(TAG, "Clicked "+ song.isFavorite)
-            if (song.isFavorite) {
-                favorite_icon_detail.setBackground(getDrawable(R.drawable.ic_favorite_border_black_24dp))
-                song.isFavorite = false
-            } else {
-                song.isFavorite = true
-                favorite_icon_detail.setBackground(getDrawable(R.drawable.ic_favorite_black_24dp))
-            }
+            setSong(song)
+        }
+    }
+
+    private fun setSong(song: Song) {
+        if (song.isFavorite) {
+            favorite_icon_detail.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border_black_24dp, null)
+            song.isFavorite = false
+        } else {
+            song.isFavorite = true
+            favorite_icon_detail.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_red_24dp, null)
         }
     }
 
