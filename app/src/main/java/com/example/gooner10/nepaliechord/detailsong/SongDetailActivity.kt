@@ -5,8 +5,11 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.request.RequestOptions
+import com.example.gooner10.nepaliechord.GlideApp
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.activity_song_detail.*
 
 class SongDetailActivity : AppCompatActivity() {
@@ -20,9 +23,13 @@ class SongDetailActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.loadUrl("file:///android_asset/song.html")
 
+        GlideApp.with(this).load(R.drawable.user_image)
+                .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(50, 2)))
+                .into(artist_image_icon_detail)
+
         favorite_icon_detail.setOnClickListener { v: View? ->
 
-            Log.i(TAG, "Clicked "+ song.isFavorite)
+            Log.i(TAG, "Clicked " + song.isFavorite)
             setSong(song)
         }
     }
