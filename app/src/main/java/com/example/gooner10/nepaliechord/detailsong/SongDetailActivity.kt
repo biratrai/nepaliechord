@@ -23,7 +23,9 @@ class SongDetailActivity : AppCompatActivity() {
         webView.settings.javaScriptEnabled = true
         webView.loadUrl("file:///android_asset/song.html")
 
-        GlideApp.with(this).load(R.drawable.user_image)
+        GlideApp.with(this).load(R.drawable.ic_account_circle_black_24dp)
+                .placeholder(R.drawable.ic_account_circle_black_24dp)
+                .error(R.drawable.ic_account_circle_black_24dp)
                 .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(50, 2)))
                 .into(artist_image_icon_detail)
 
