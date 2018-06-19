@@ -13,12 +13,20 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
+        <ImageView
+            android:id="@+id/artist_image_icon_detail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            tools:background="@drawable/ic_person_outline_black_24dp" />
+
         <TextView
             android:id="@+id/songTitleName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:layout_weight="9"
+            android:layout_weight="8"
             android:textAppearance="@android:style/TextAppearance.Holo.Widget.ActionBar.Title"
             tools:text="Mero Sansar" />
 
