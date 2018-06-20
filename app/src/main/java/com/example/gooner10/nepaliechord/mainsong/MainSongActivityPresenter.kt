@@ -17,7 +17,8 @@ class MainSongActivityPresenter(private val songView: MainSongContract.MainSongV
             val song = Song(i.toString() + ") Sugam Pokhrel",
                     ": Mero Sansar",
                     true,
-                    1 + i)
+                    1 + i,
+                    "file:///android_asset/song.html")
             songList.add(song)
         }
         songView.displaySong(songList)
