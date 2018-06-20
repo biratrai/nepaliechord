@@ -1,6 +1,9 @@
 package com.example.gooner10.nepaliechord.mainsong
 
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager.OnPageChangeListener
@@ -19,6 +22,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
 
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
+    private lateinit var colorAnimation: ValueAnimator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +31,8 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
         viewPager.adapter = pagerAdapter
 
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
+        setColorAnimation()
 
         viewPager.addOnPageChangeListener(object : OnPageChangeListener {
 
@@ -39,6 +45,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
             // This method will be invoked when the current page is scrolled
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 Log.d(TAG, "Selected onPageScrolled position: $position")
+                colorAnimation.currentPlayTime = (((positionOffset + position) * 10000000000L).toLong())
                 presenter.fetchSong()
             }
 
@@ -48,6 +55,14 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
                 Log.d(TAG, "Selected onPageScrollStateChanged position: $state")
             }
         })
+    }
+
+    private fun setColorAnimation() {
+        colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.CYAN, Color.GREEN, Color.MAGENTA)
+        colorAnimation.duration = (3 - 1) * 10000000000L
+        colorAnimation.addUpdateListener { animator ->
+            viewPager.setBackgroundColor(animator.animatedValue as Int)
+        }
     }
 
     override fun onListFragmentInteraction(song: Song) {
@@ -84,7 +99,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
     }
 
     // Used to define the constant
-    companion object{
+    companion object {
 
         private val TAG = MainActivity::class.java.simpleName
 
