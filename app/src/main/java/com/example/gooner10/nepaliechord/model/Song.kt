@@ -10,19 +10,22 @@ import android.os.Parcelable
 class Song(var artistName: String,
            var songTitle: String,
            var isFavorite: Boolean,
-           var rating: Int) : Parcelable {
+           var rating: Int,
+           var lyrics: String) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
             parcel.readByte() != 0.toByte(),
-            parcel.readInt())
+            parcel.readInt(),
+            parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(artistName)
         parcel.writeString(songTitle)
         parcel.writeByte(if (isFavorite) 1 else 0)
         parcel.writeInt(rating)
+        parcel.writeString(lyrics)
     }
 
     override fun describeContents(): Int {
