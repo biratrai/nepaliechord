@@ -21,7 +21,7 @@ class SongDetailActivity : AppCompatActivity() {
         val song = intent.getParcelableExtra<Song>("Song")
         songTitleName.text = song.songTitle
         webView.settings.javaScriptEnabled = true
-        webView.loadUrl("file:///android_asset/song.html")
+        webView.loadUrl(song.lyrics)
 
         GlideApp.with(this).load(R.drawable.ic_account_circle_black_24dp)
                 .placeholder(R.drawable.ic_account_circle_black_24dp)
