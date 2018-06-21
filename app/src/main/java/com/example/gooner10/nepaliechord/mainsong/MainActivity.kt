@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSong
         colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.CYAN, Color.GREEN, Color.MAGENTA)
         colorAnimation.duration = (3 - 1) * 10000000000L
         colorAnimation.addUpdateListener { animator ->
-            viewPager.setBackgroundColor(animator.animatedValue as Int)
+            pagerAdapter.getRegisteredFragment(viewPager.currentItem).view?.setBackgroundColor(animator.animatedValue as Int)
         }
     }
 
