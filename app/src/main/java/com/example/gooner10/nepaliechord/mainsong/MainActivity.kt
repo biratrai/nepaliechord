@@ -22,9 +22,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), MainSongContract.MainSongView,
         AllSongFragment.OnAllSongFragmentItemListener,
         FavoriteSongFragment.OnFavoriteFragmentItemListener,
-        RecentSongFragment.OnRecentSongFragmentItemListener{
+        RecentSongFragment.OnRecentSongFragmentItemListener {
 
-    private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager)
+    private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager, this)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
     private lateinit var colorAnimation: ValueAnimator
 
@@ -96,6 +96,10 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView,
             R.id.navigation_favorite -> {
                 Log.i(TAG, "favorite")
                 viewPager.setCurrentItem(1, true)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_new_releases -> {
+                viewPager.setCurrentItem(2, true)
                 return@OnNavigationItemSelectedListener true
             }
         }
