@@ -1,8 +1,10 @@
 package com.example.gooner10.nepaliechord.mainsong
 
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.util.Log
+import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment
 import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
 import com.example.gooner10.nepaliechord.recentsong.RecentSongFragment
@@ -11,7 +13,7 @@ import com.example.gooner10.nepaliechord.recentsong.RecentSongFragment
  * Pager Adapter for ViewPager in [MainActivity]
  */
 
-class MainActivityViewPagerAdapter(fm: FragmentManager) : SmartFragmentStatePagerAdapter(fm) {
+class MainActivityViewPagerAdapter(fm: FragmentManager, private val context: Context) : SmartFragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment? {
         when (position) {
@@ -30,9 +32,9 @@ class MainActivityViewPagerAdapter(fm: FragmentManager) : SmartFragmentStatePage
 
     override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
-            0 -> "Songs"
-            1 -> "Favorite"
-            else -> "Recent"
+            0 -> context.getString(R.string.title_home)
+            1 -> context.getString(R.string.title_favorite_songs)
+            else -> context.getString(R.string.title_recent_song)
         }
     }
 
