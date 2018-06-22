@@ -14,11 +14,15 @@ import com.example.gooner10.nepaliechord.allsong.AllSongFragment
 import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
 import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
 import com.example.gooner10.nepaliechord.model.Song
+import com.example.gooner10.nepaliechord.recentsong.RecentSongFragment
 import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity(), MainSongContract.MainSongView, AllSongFragment.OnAllSongFragmentItemListener, FavoriteSongFragment.OnFavoriteFragmentItemListener {
+class MainActivity : AppCompatActivity(), MainSongContract.MainSongView,
+        AllSongFragment.OnAllSongFragmentItemListener,
+        FavoriteSongFragment.OnFavoriteFragmentItemListener,
+        RecentSongFragment.OnRecentSongFragmentItemListener{
 
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
