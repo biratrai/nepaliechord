@@ -2,7 +2,7 @@
     <string name="app_name">nepaliechord</string>
     <string name="title_home">Home</string>
     <string name="title_favorite_songs">Favorites</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_recent_song">Recent</string>
     <string name="song_detail_sample">E F#m A E \nParelima lukai rakha na \n E F#m A E \nAangalo ma bandhi rakha\n E A E\n Jaana nadeu rokaa na rokaa\n E A E \n
         Udna nadeu aakash ko chari jastai malai\n A B A\n Bandhera rakha timrai mutuma,\n A B yo taa timrai dhadhkana ho\n A B A B E\n Sanchera rakha timrai aankhama,\n
         yo ta timrai sahara ho\n
