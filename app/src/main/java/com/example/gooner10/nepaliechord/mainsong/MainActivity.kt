@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView,
             // This method will be invoked when the current page is scrolled
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 Log.d(TAG, "Selected onPageScrolled position: $position")
-                colorAnimation.currentPlayTime = (((positionOffset + position) * 10000000000L).toLong())
+                colorAnimation.currentPlayTime = (((positionOffset + position) * ANIMATION_DURATION).toLong())
                 presenter.fetchSong()
             }
 
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView,
 
     private fun setColorAnimation() {
         colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.CYAN, Color.GREEN, Color.MAGENTA)
-        colorAnimation.duration = (3 - 1) * 10000000000L
+        colorAnimation.duration = (3 - 1) * ANIMATION_DURATION
         colorAnimation.addUpdateListener { animator ->
             pagerAdapter.getRegisteredFragment(viewPager.currentItem).view?.setBackgroundColor(animator.animatedValue as Int)
         }
@@ -110,6 +110,7 @@ class MainActivity : AppCompatActivity(), MainSongContract.MainSongView,
     companion object {
 
         private val TAG = MainActivity::class.java.simpleName
+        private const val ANIMATION_DURATION = 10000000000L
 
     }
 }
