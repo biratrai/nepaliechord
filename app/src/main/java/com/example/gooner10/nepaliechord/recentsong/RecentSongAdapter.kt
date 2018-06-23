@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.all_song_row.view.*
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
  * specified [OnAllSongFragmentItemListener].
  */
-class RecentSongAdapter(private var list: ArrayList<Song>, private val listener: RecentSongFragment.OnRecentSongFragmentItemListener?) :
+class RecentSongAdapter(private var list: List<Song>, private val listener: RecentSongFragment.OnRecentSongFragmentItemListener?) :
         RecyclerView.Adapter<RecentSongAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -44,7 +44,7 @@ class RecentSongAdapter(private var list: ArrayList<Song>, private val listener:
     }
 
     fun setData(songList: List<Song>) {
-        list = songList as ArrayList<Song>
+        list = songList
         notifyDataSetChanged()
     }
 
