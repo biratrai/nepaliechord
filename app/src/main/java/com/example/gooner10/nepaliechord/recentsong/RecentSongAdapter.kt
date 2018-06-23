@@ -35,7 +35,7 @@ class RecentSongAdapter(private var list: ArrayList<Song>, private val listener:
         }
 
         holder.view.favorite_icon.setOnClickListener { v: View? ->
-            Log.i(TAG, "View " + v)
+            Log.i(TAG, "View $v")
         }
     }
 
