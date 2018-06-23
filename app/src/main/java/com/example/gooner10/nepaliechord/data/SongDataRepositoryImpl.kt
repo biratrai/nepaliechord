@@ -1,6 +1,10 @@
 package com.example.gooner10.nepaliechord.data
 
-class SongDataRepositoryImpl : SongDataRepository{
+import com.google.firebase.database.FirebaseDatabase
+
+class SongDataRepositoryImpl : SongDataRepository {
+    val database = FirebaseDatabase.getInstance()
+
     override fun getAllSong() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
