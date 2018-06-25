@@ -18,7 +18,8 @@ class MainSongActivityPresenter(private val songView: MainSongContract.MainSongV
                     ": Mero Sansar",
                     true,
                     1 + i,
-                    "file:///android_asset/song.html")
+                    "file:///android_asset/song.html",
+                    System.currentTimeMillis())
             songList.add(song)
         }
         songView.displaySong(songList)
