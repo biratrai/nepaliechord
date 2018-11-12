@@ -10,7 +10,7 @@ import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
 import com.example.gooner10.nepaliechord.recentsong.RecentSongFragment
 
 /**
- * Pager Adapter for ViewPager in [MainActivity]
+ * Pager Adapter for ViewPager in [MainSongActivity]
  */
 
 class MainActivityViewPagerAdapter(fm: FragmentManager, private val context: Context) : SmartFragmentStatePagerAdapter(fm) {

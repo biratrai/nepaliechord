@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gooner10.nepaliechord.mainsong.MainActivity">
+    tools:context="com.example.gooner10.nepaliechord.mainsong.MainSongActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
