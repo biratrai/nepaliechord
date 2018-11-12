@@ -7,7 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import java.util.ArrayList
+import java.util.*
 
 class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
     private val database = FirebaseDatabase.getInstance()
@@ -18,14 +18,15 @@ class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
         info("getAllSong")
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
-                info("onCancelled "+ p0.message)
+                info("onCancelled " + p0.message)
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                info("onDataChange "+ p0)
+                info("onDataChange " + p0)
             }
 
         })
+//        saveSong()
         for (i in 1..9) {
             val song = Song(i.toString() + ") Sugam Pokhrel",
                     ": Mero Sansar",
@@ -36,6 +37,28 @@ class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
             songList.add(song)
         }
         return songList
+    }
+
+    fun saveSong() {
+        val songList = ArrayList<Song>()
+        val databaseRef = database.reference
+        for (i in 1..9) {
+            val song = Song(i.toString() + ") Sugam Pokhrel",
+                    ": Mero Sansar",
+                    true,
+                    1 + i,
+                    "file:///android_asset/song.html",
+                    System.currentTimeMillis())
+            val songKey = databaseRef.push().key
+            databaseRef.child("songs").child(songKey!!).setValue(song)
+//            val songMap : HashMap<String, Song> =  HashMap()
+//            songMap.put()
+            songList.add(song)
+        }
+    }
+
+    fun getSondDetail() {
+
     }
 
     override fun getFavoriteSong() {
