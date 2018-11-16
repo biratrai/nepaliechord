@@ -1,6 +1,7 @@
 package com.example.gooner10.nepaliechord.data
 
 import com.example.gooner10.nepaliechord.model.Song
+import com.example.gooner10.nepaliechord.model.SongDetail
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -14,7 +15,7 @@ class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
 
     override fun getAllSong(): List<Song> {
         val songList = ArrayList<Song>()
-        val databaseRef = database.getReference("song")
+        val databaseRef = database.getReference("allSongs")
         info("getAllSong")
         databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -26,7 +27,7 @@ class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
             }
 
         })
-//        saveSong()
+        saveSong()
         for (i in 1..9) {
             val song = Song(i.toString() + ") Sugam Pokhrel",
                     ": Mero Sansar",
@@ -49,23 +50,46 @@ class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
                     1 + i,
                     "file:///android_asset/song.html",
                     System.currentTimeMillis())
-            val songKey = databaseRef.push().key
-            databaseRef.child("songs").child(songKey!!).setValue(song)
-//            val songMap : HashMap<String, Song> =  HashMap()
-//            songMap.put()
+            val songKey = databaseRef.child("allSongs").push().key
+            val songDet = SongDetail(songKey!!,
+                    "file:///android_asset/song.html")
+            databaseRef.child("allSongs").child(songKey).setValue(song)
+            databaseRef.child("song-detail").push().setValue(songDet)
             songList.add(song)
         }
     }
 
-    fun getSondDetail() {
+    override fun getFavoriteSong(): List<Song> {
+        val favoriteSongList = ArrayList<Song>()
+        val databaseRef = database.getReference("favoriteSongs")
+        info("getAllSong")
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                info("onCancelled " + p0.message)
+            }
 
+            override fun onDataChange(p0: DataSnapshot) {
+                info("onDataChange " + p0)
+            }
+
+        })
+        return favoriteSongList
     }
 
-    override fun getFavoriteSong() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getRecentSong(): List<Song> {
+        val recentSongList = ArrayList<Song>()
+        val databaseRef = database.getReference("recentSongs")
+        info("getAllSong")
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                info("onCancelled " + p0.message)
+            }
 
-    override fun getRecentSong() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            override fun onDataChange(p0: DataSnapshot) {
+                info("onDataChange " + p0)
+            }
+
+        })
+        return recentSongList
     }
 }
