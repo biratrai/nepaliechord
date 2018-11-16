@@ -12,4 +12,31 @@
     D|-----2-4s6-4-2-------4s6-2--------------------4-------4-2--|\n
     A|-2h4-------------------------------------------------------|\n
     E|-----------------------------------------------------------|\n</string>
+    <string name="nice_html">
+        <![CDATA[
+        <p>This is a html-formatted string with <b>bold</b> and <i>italic</i> text</p>
+        <p>This is another paragraph of the same string.</p>
+        ]]>
+    </string>
+
+    <string name="html">
+        <![CDATA[
+        <h1>Main Title</h1>
+        <h2>A sub-title</h2>
+        <p>This is some html. Look, here\'s an <u>underline</u>.</p>
+        <p>Look, this is <em>emphasized.</em> And here\'s some <b>bold</b>.</p>
+        <p>This is a UL list:
+        <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        </ul>
+        <p>This is an OL list:
+        <ol>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        </ol>
+        ]]>
+    </string>
 </resources>
