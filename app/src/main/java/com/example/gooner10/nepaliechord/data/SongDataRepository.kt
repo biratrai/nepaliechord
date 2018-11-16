@@ -5,6 +5,6 @@ import java.util.ArrayList
 
 interface SongDataRepository {
     fun getAllSong(): List<Song>
-    fun getFavoriteSong()
-    fun getRecentSong()
+    fun getFavoriteSong(): List<Song>
+    fun getRecentSong(): List<Song>
 }
