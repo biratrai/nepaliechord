@@ -6,15 +6,19 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.view.GravityCompat
 import android.support.v4.view.ViewPager.OnPageChangeListener
+import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.MenuItem
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment
 import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
 import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
 import com.example.gooner10.nepaliechord.login.LoginActivity
+import com.example.gooner10.nepaliechord.model.SingerDetail
 import com.example.gooner10.nepaliechord.model.Song
 import com.example.gooner10.nepaliechord.recentsong.RecentSongFragment
 import com.firebase.ui.auth.AuthUI
@@ -47,6 +51,11 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
 
 //        setColorAnimation()
         setSupportActionBar(toolbar)
+        val actionbar: ActionBar? = supportActionBar
+        actionbar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+        }
+
         setNavigation()
 
         viewPager.addOnPageChangeListener(object : OnPageChangeListener {
@@ -70,6 +79,16 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
                 Log.d(TAG, "Selected onPageScrollStateChanged position: $state")
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                drawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setNavigation() {
@@ -118,13 +137,20 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
         startActivity(intent)
     }
 
+    override fun onListFragmentInteraction(singer: SingerDetail) {
+        Log.d(TAG, "Song clicked  ${singer.singerName}")
+        intent = Intent(this, SongDetailActivity::class.java)
+//        intent.putExtra("Song", song)
+        startActivity(intent)
+    }
+
     @DebugLog
-    override fun displaySong(songList: MutableList<Song>) {
-        Log.d(TAG, "songlist: $songList")
+    override fun displaySong(singerList: MutableList<SingerDetail>) {
+        Log.d(TAG, "songlist: $singerList")
         Log.d(TAG, "currentItem: " + viewPager.currentItem)
         Log.d(TAG, "current fragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
         val fragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
-        fragment.setData(songList)
+        fragment.setSingerData(singerList)
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
