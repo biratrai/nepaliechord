@@ -1,7 +1,10 @@
 package com.example.gooner10.nepaliechord.data
 
+import android.content.Context
+import com.example.gooner10.nepaliechord.mainsong.MainSongContract
 import com.example.gooner10.nepaliechord.model.Song
 import com.example.gooner10.nepaliechord.model.SongDetail
+import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -10,7 +13,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
 
-class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
+class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger {
+//    private val firebase = FirebaseApp.initializeApp(context)
     private val database = FirebaseDatabase.getInstance()
 
     override fun getAllSong(): List<Song> {
@@ -27,12 +31,13 @@ class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
             }
 
         })
-        saveSong()
+//        saveSong()
         for (i in 1..9) {
             val song = Song(i.toString() + ") Sugam Pokhrel",
                     ": Mero Sansar",
                     true,
                     1 + i,
+                    "file:///android_asset/song.html",
                     "file:///android_asset/song.html",
                     System.currentTimeMillis())
             songList.add(song)
@@ -48,6 +53,7 @@ class SongDataRepositoryImpl : SongDataRepository, AnkoLogger {
                     ": Mero Sansar",
                     true,
                     1 + i,
+                    "file:///android_asset/song.html",
                     "file:///android_asset/song.html",
                     System.currentTimeMillis())
             val songKey = databaseRef.child("allSongs").push().key
