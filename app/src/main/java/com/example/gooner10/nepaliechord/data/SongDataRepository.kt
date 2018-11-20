@@ -7,4 +7,5 @@ interface SongDataRepository {
     fun getAllArtist(mainSongActivityPresenter: MainSongActivityPresenter)
     fun getFavoriteSong(): List<Song>
     fun getRecentSong(): List<Song>
+    fun getSongByArtist(singerId: String): List<Song>
 }

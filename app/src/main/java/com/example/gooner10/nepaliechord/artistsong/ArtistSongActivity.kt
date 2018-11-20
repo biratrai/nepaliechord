@@ -1,14 +1,11 @@
 package com.example.gooner10.nepaliechord.artistsong
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
-import com.bumptech.glide.request.RequestOptions
+import android.support.v7.app.AppCompatActivity
 import com.example.gooner10.nepaliechord.GlideApp
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.SingerDetail
-
 import kotlinx.android.synthetic.main.activity_artist_song.*
 
 class ArtistSongActivity : AppCompatActivity() {
