@@ -105,6 +105,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
         val songDet = SongDetail(songKey,
                 "file:///android_asset/song.html")
         databaseRef.child("song-detail").child(songDetailKey).setValue(songDet)
+        songTitle.text.clear()
         toast("Save song successfully!")
     }
 
