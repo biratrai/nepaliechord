@@ -2,6 +2,7 @@ package com.example.gooner10.nepaliechord
 
 import android.net.Uri
 import android.support.v4.app.Fragment
+import com.example.gooner10.nepaliechord.model.SingerDetail
 import com.example.gooner10.nepaliechord.model.Song
 
 /**
@@ -12,7 +13,11 @@ import com.example.gooner10.nepaliechord.model.Song
  */
 abstract class BaseFragment : Fragment() {
 
-    abstract fun setData(songList: List<Song>)
+    open fun setSongData(songList: List<Song>) {
+
+    }
+
+    open fun setSingerData(singerList: List<SingerDetail>) {}
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
