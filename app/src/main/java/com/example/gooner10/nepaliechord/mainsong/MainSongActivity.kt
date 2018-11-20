@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.MenuItem
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment
+import com.example.gooner10.nepaliechord.artistsong.ArtistSongActivity
 import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
 import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
 import com.example.gooner10.nepaliechord.login.LoginActivity
@@ -139,8 +140,8 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
 
     override fun onListFragmentInteraction(singer: SingerDetail) {
         Log.d(TAG, "Song clicked  ${singer.singerName}")
-        intent = Intent(this, SongDetailActivity::class.java)
-//        intent.putExtra("Song", song)
+        intent = Intent(this, ArtistSongActivity::class.java)
+        intent.putExtra("Singer", singer)
         startActivity(intent)
     }
 
