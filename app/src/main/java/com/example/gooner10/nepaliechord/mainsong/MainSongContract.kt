@@ -8,10 +8,12 @@ import com.example.gooner10.nepaliechord.model.Song
 
 interface MainSongContract {
     interface MainSongView {
-        fun displaySong(songList: List<Song>)
+        fun displaySong(songList: MutableList<Song>)
     }
 
     interface MainSongPresenter {
         fun fetchSong()
+
+        fun onDataFetched(songList: MutableList<Song>)
     }
 }

@@ -119,7 +119,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
     }
 
     @DebugLog
-    override fun displaySong(songList: List<Song>) {
+    override fun displaySong(songList: MutableList<Song>) {
         Log.d(TAG, "songlist: $songList")
         Log.d(TAG, "currentItem: " + viewPager.currentItem)
         Log.d(TAG, "current fragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
