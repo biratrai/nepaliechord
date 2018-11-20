@@ -23,7 +23,7 @@ class SongDetailActivity : AppCompatActivity() {
 //        webView.settings.javaScriptEnabled = true
 
 //        textView.text = Html.fromHtml(getString(R.string.nice_html))
-//        webView.loadUrl(song.lyrics)
+//        webView.loadUrl(song.singerId)
         webView.loadDataWithBaseURL("", getString(R.string.html), "text/html", "utf-8", "")
 
         GlideApp.with(this).load(R.drawable.ic_account_circle_black_24dp)
