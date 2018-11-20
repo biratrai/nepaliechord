@@ -24,7 +24,11 @@
         <activity android:name=".detailsong.SongDetailActivity" />
         <activity
             android:name=".login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".artistsong.ArtistSongActivity"
+            android:label="@string/title_activity_artist_song"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
