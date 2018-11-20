@@ -7,22 +7,31 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager.OnPageChangeListener
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment
 import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
 import com.example.gooner10.nepaliechord.favoritesong.FavoriteSongFragment
+import com.example.gooner10.nepaliechord.login.LoginActivity
 import com.example.gooner10.nepaliechord.model.Song
 import com.example.gooner10.nepaliechord.recentsong.RecentSongFragment
+import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 
-class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView,
-        AllSongFragment.OnAllSongFragmentItemListener,
-        FavoriteSongFragment.OnFavoriteFragmentItemListener,
-        RecentSongFragment.OnRecentSongFragmentItemListener {
+class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
+        , AllSongFragment.OnAllSongFragmentItemListener
+        , FavoriteSongFragment.OnFavoriteFragmentItemListener
+        , RecentSongFragment.OnRecentSongFragmentItemListener
+        , AnkoLogger {
 
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager, this)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
@@ -37,6 +46,8 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView,
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         setColorAnimation()
+        setSupportActionBar(toolbar)
+        setNavigation()
 
         viewPager.addOnPageChangeListener(object : OnPageChangeListener {
 
@@ -59,6 +70,37 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView,
                 Log.d(TAG, "Selected onPageScrollStateChanged position: $state")
             }
         })
+    }
+
+    private fun setNavigation() {
+        val actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(actionBarToggle)
+        actionBarToggle.syncState()
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            // set item as selected to persist highlight
+            menuItem.isChecked = true
+            // close drawer when item is tapped
+            drawerLayout.closeDrawers()
+
+            when (menuItem.itemId) {
+                R.id.nav_account -> {
+                    startActivity(LoginActivity.createIntent(this))
+                }
+                R.id.nav_logout -> {
+                    AuthUI.getInstance()
+                            .signOut(this)
+                            .addOnCompleteListener(object : OnCompleteListener<Void> {
+                                override fun onComplete(p0: Task<Void>) {
+                                    info("Sign out complete")
+                                }
+                            })
+                }
+            }
+            // Add code here to update the UI based on the item selected
+            // For example, swap UI fragments here
+
+            true
+        }
     }
 
     private fun setColorAnimation() {
