@@ -1,6 +1,6 @@
 package com.example.gooner10.nepaliechord.mainsong
 
-import com.example.gooner10.nepaliechord.model.Song
+import com.example.gooner10.nepaliechord.model.SingerDetail
 
 /**
  * Contract for the mainActivity
@@ -8,12 +8,12 @@ import com.example.gooner10.nepaliechord.model.Song
 
 interface MainSongContract {
     interface MainSongView {
-        fun displaySong(songList: MutableList<Song>)
+        fun displaySong(songList: MutableList<SingerDetail>)
     }
 
     interface MainSongPresenter {
         fun fetchSong()
 
-        fun onDataFetched(songList: MutableList<Song>)
+        fun onDataFetched(songList: MutableList<SingerDetail>)
     }
 }

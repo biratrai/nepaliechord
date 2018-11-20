@@ -49,7 +49,7 @@ class RecentSongFragment : BaseFragment() {
         return view
     }
 
-    override fun setData(songList: List<Song>) {
+    override fun setSongData(songList: List<Song>) {
         Log.d(TAG, "song data received")
         adapterAll?.setData(songList)
     }
