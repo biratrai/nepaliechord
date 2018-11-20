@@ -45,7 +45,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
 
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
-        setColorAnimation()
+//        setColorAnimation()
         setSupportActionBar(toolbar)
         setNavigation()
 
@@ -60,7 +60,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
             // This method will be invoked when the current page is scrolled
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 Log.d(TAG, "Selected onPageScrolled position: $position")
-                colorAnimation.currentPlayTime = (((positionOffset + position) * ANIMATION_DURATION).toLong())
+//                colorAnimation.currentPlayTime = (((positionOffset + position) * ANIMATION_DURATION).toLong())
                 presenter.fetchSong()
             }
 
