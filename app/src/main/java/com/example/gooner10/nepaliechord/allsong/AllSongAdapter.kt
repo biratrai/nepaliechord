@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.gooner10.nepaliechord.GlideApp
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment.OnAllSongFragmentItemListener
+import com.example.gooner10.nepaliechord.model.SingerDetail
 import com.example.gooner10.nepaliechord.model.Song
 import kotlinx.android.synthetic.main.all_song_row.view.*
 
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.all_song_row.view.*
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
  * specified [OnAllSongFragmentItemListener].
  */
-class AllSongAdapter(private var list: ArrayList<Song>, private val listener: OnAllSongFragmentItemListener?) : RecyclerView.Adapter<AllSongAdapter.ViewHolder>() {
+class AllSongAdapter(private var list: ArrayList<SingerDetail>, private val listener: OnAllSongFragmentItemListener?) : RecyclerView.Adapter<AllSongAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -29,9 +30,9 @@ class AllSongAdapter(private var list: ArrayList<Song>, private val listener: On
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = list[position]
-        holder.songTitleView.text = list[position].artistName
-        holder.artistNameView.text = list[position].songTitle
-        GlideApp.with(listener as Context).load(R.drawable.ad).apply(RequestOptions.circleCropTransform()).into(holder.singerIcon)
+        holder.songTitleView.text = list[position].singerName
+//        holder.artistNameView.text = list[position].songTitle
+        GlideApp.with(listener as Context).load(list[position].singerPhoto).apply(RequestOptions.circleCropTransform()).into(holder.singerIcon)
 
         holder.view.setOnClickListener {
             listener?.onListFragmentInteraction(holder.item!!)
@@ -46,8 +47,8 @@ class AllSongAdapter(private var list: ArrayList<Song>, private val listener: On
         return list.size
     }
 
-    fun setData(songList: List<Song>) {
-        list = songList as ArrayList<Song>
+    fun setData(singerList: List<SingerDetail>) {
+        list = singerList as ArrayList<SingerDetail>
         notifyDataSetChanged()
     }
 
@@ -56,7 +57,7 @@ class AllSongAdapter(private var list: ArrayList<Song>, private val listener: On
         val artistNameView: TextView = view.findViewById<View>(R.id.artist_name) as TextView
         val favoriteIcon: ImageView = view.findViewById(R.id.favorite_icon) as ImageView
         val singerIcon: ImageView = view.findViewById(R.id.singerIcon) as ImageView
-        var item: Song? = null
+        var item: SingerDetail? = null
 
         override fun toString(): String {
             return super.toString() + " '" + artistNameView.text + "'"

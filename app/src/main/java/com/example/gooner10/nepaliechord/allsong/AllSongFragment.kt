@@ -9,9 +9,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.BaseFragment
-import com.example.gooner10.nepaliechord.model.Song
+import com.example.gooner10.nepaliechord.R
+import com.example.gooner10.nepaliechord.model.SingerDetail
 
 /**
  * A fragment representing a list of Items.
@@ -26,7 +26,7 @@ import com.example.gooner10.nepaliechord.model.Song
  */
 class AllSongFragment : BaseFragment() {
     private var listener: OnAllSongFragmentItemListener? = null
-    private val songList = arrayListOf<Song>()
+    private val songList = arrayListOf<SingerDetail>()
     private var adapterAll: AllSongAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +49,9 @@ class AllSongFragment : BaseFragment() {
         return view
     }
 
-    override fun setData(songList: List<Song>) {
+    override fun setSingerData(singerList: List<SingerDetail>) {
         Log.d(TAG, "song data received")
-        adapterAll?.setData(songList)
+        adapterAll?.setData(singerList)
     }
 
     override fun onDetach() {
@@ -67,6 +67,7 @@ class AllSongFragment : BaseFragment() {
             throw RuntimeException(context.toString() + " must implement OnAllSongFragmentItemListener")
         }
     }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -77,7 +78,7 @@ class AllSongFragment : BaseFragment() {
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
     interface OnAllSongFragmentItemListener {
-        fun onListFragmentInteraction(song: Song)
+        fun onListFragmentInteraction(singer: SingerDetail)
     }
 
     companion object {
