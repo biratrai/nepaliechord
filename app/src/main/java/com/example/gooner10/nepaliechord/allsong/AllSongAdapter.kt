@@ -1,5 +1,6 @@
 package com.example.gooner10.nepaliechord.allsong
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.request.RequestOptions
+import com.example.gooner10.nepaliechord.GlideApp
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.example.gooner10.nepaliechord.model.Song
@@ -28,6 +31,7 @@ class AllSongAdapter(private var list: ArrayList<Song>, private val listener: On
         holder.item = list[position]
         holder.songTitleView.text = list[position].artistName
         holder.artistNameView.text = list[position].songTitle
+        GlideApp.with(listener as Context).load(R.drawable.ad).apply(RequestOptions.circleCropTransform()).into(holder.singerIcon)
 
         holder.view.setOnClickListener {
             listener?.onListFragmentInteraction(holder.item!!)
@@ -51,6 +55,7 @@ class AllSongAdapter(private var list: ArrayList<Song>, private val listener: On
         val songTitleView: TextView = view.findViewById<View>(R.id.song_title) as TextView
         val artistNameView: TextView = view.findViewById<View>(R.id.artist_name) as TextView
         val favoriteIcon: ImageView = view.findViewById(R.id.favorite_icon) as ImageView
+        val singerIcon: ImageView = view.findViewById(R.id.singerIcon) as ImageView
         var item: Song? = null
 
         override fun toString(): String {
