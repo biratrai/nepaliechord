@@ -7,13 +7,22 @@ import android.os.Parcelable
  * Song pojo
  */
 
-class Song(var artistName: String,
-           var songTitle: String,
-           var isFavorite: Boolean,
-           var rating: Int,
-           var singerId: String,
-           var songId: String,
-           val timeStamp: Long) : Parcelable {
+class Song() : Parcelable {
+    var artistName: String? = null
+    var songTitle: String? = null
+    var isFavorite: Boolean = false
+    var rating: Int = 0
+    var singerId: String? = null
+    var songId: String? = null
+    var timeStamp: Long = 0
+
+    constructor(artistName: String,
+                songTitle: String,
+                isFavorite: Boolean,
+                rating: Int,
+                singerId: String,
+                songId: String,
+                timeStamp: Long) : this()
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
