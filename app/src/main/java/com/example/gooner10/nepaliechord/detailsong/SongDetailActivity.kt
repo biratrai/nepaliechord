@@ -1,15 +1,15 @@
 package com.example.gooner10.nepaliechord.detailsong
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.view.View
 import com.bumptech.glide.request.RequestOptions
 import com.example.gooner10.nepaliechord.GlideApp
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import kotlinx.android.synthetic.main.activity_artist_song.*
 import kotlinx.android.synthetic.main.activity_song_detail.*
 
 class SongDetailActivity : AppCompatActivity() {
@@ -20,11 +20,12 @@ class SongDetailActivity : AppCompatActivity() {
 
         val song = intent.getParcelableExtra<Song>("SongDetail")
         songTitleName.text = song.songTitle
-//        webView.settings.javaScriptEnabled = true
+        webView.settings.javaScriptEnabled = true
+        setSupportActionBar(activitySongToolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-//        textView.text = Html.fromHtml(getString(R.string.nice_html))
-//        webView.loadUrl(song.singerId)
-        webView.loadDataWithBaseURL("", getString(R.string.html), "text/html", "utf-8", "")
+        webView.loadUrl("file:///android_asset/song.html")
+//        webView.loadDataWithBaseURL("", getString(R.string.html), "text/html", "utf-8", "")
 
         GlideApp.with(this).load(R.drawable.ic_account_circle_black_24dp)
                 .placeholder(R.drawable.ic_account_circle_black_24dp)
@@ -32,20 +33,26 @@ class SongDetailActivity : AppCompatActivity() {
                 .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(50, 2)))
                 .into(artist_image_icon_detail)
 
-        favorite_icon_detail.setOnClickListener { v: View? ->
+//        favorite_icon_detail.setOnClickListener { v: View? ->
+//
+//            Log.i(TAG, "Clicked " + song.isFavorite)
+//            setSong(song)
+//        }
 
-            Log.i(TAG, "Clicked " + song.isFavorite)
+        favoriteFabIcon.setOnClickListener { view ->
+            Snackbar.make(view, "This is my favorite", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
             setSong(song)
         }
     }
 
     private fun setSong(song: Song) {
         if (song.isFavorite) {
-            favorite_icon_detail.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border_black_24dp, null)
+            favoriteFabIcon.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border_black_24dp, null)
             song.isFavorite = false
         } else {
             song.isFavorite = true
-            favorite_icon_detail.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_red_24dp, null)
+            favoriteFabIcon.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_red_24dp, null)
         }
     }
 
