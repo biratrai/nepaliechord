@@ -20,24 +20,133 @@
     </string>
 
     <string name="html">
-        <![CDATA[
-        <h1>Main Title</h1>
-        <h2>A sub-title</h2>
-        <p>This is some html. Look, here\'s an <u>underline</u>.</p>
-        <p>Look, this is <em>emphasized.</em> And here\'s some <b>bold</b>.</p>
-        <p>This is a UL list:
-        <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-        </ul>
-        <p>This is an OL list:
-        <ol>
-        <li>One</li>
-        <li>Two</li>
-        <li>Three</li>
-        </ol>
-        ]]>
+        <![CDATA[<p id="chord">
+F…… 		Bb………. C …………		F 
+</p>
+<p>
+Yo Hawa Yo Lahar Yo Saanjh Timilai
+</p>
+<p id="chord">
+Bb…… 	F………. 	Bb …………	F 
+</p>
+<p>
+Yo Dharti Yo Aakash Ramjham Timilai
+</p>
+<p id="chord">
+F……………………….C 
+</p>
+<p>
+Tara Timro Naam Ke Ho Ho Ho Ho
+</p>
+<p id="chord">
+F……… Bb …F 
+</p>
+<p>
+Relimai Relimai Relimai
+</p>
+<p id="chord">
+F……. C… ………..F 
+</p>
+<p>
+Lahure Dai Ko Relimai Relimai
+</p>
+<p id="chord">
+ 
+</p>
+<p>
+Verse:1
+</p>
+<p id="chord">
+F…………………..Gm 
+</p>
+<p>
+Herchu Jahan Dekchu Tyahan
+</p>
+<p id="chord">
+Bb………………….F 
+</p>
+<p>
+Timrai Roop Timrai Chaya
+</p>
+<p id="chord">
+G……………………F 
+</p>
+<p>
+Sanghalin Chan Salbalin Chan
+</p>
+<p id="chord">
+Bb…………………..F 
+</p>
+<p>
+Mitho Aabhaas Nyaano Maaya
+</p>
+<p id="chord">
+F……………………….C 
+</p>
+<p>
+Tara Timro Naam Ke Ho Ho Ho Ho
+</p>
+<p id="chord">
+F……… Bb …F 
+</p>
+<p>
+Relimai Relimai Relimai
+</p>
+<p id="chord">
+F……. C… ………..F 
+</p>
+<p>
+Lahure Dai Ko Relimai Relimai
+</p>
+<p id="chord">
+ 
+</p>
+<p>
+End:
+</p>
+<p id="chord">
+G..................... Am 
+</p>
+<p>
+Sapani Ma Aaunchau Timi
+</p>
+<p id="chord">
+C................G 
+</p>
+<p>
+Bipanima Aaidiyou
+</p>
+<p id="chord">
+C.................G 
+</p>
+<p>
+Sara Pida Sara Betha
+</p>
+<p id="chord">
+C........................G 
+</p>
+<p>
+Chyan Bhar Ma Birsai Biyou
+</p>
+<p id="chord">
+F……………………….C 
+</p>
+<p>
+Tara Timro Naam Ke Ho Ho Ho Ho
+</p>
+<p id="chord">
+F……… Bb …F 
+</p>
+<p>
+Relimai Relimai Relimai
+</p>
+<p id="chord">
+F……. C… ………..F 
+</p>
+<p>
+Lahure Dai Ko Relimai Relimai
+</p>
+]]>
     </string>
 
     <!--String Resource for Navigation Drawer-->
