@@ -21,14 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".detailsong.SongDetailActivity" />
+        <activity
+            android:name=".detailsong.SongDetailActivity"
+            android:parentActivityName=".detailsong.SongDetailActivity" />
         <activity
             android:name=".login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".artistsong.ArtistSongActivity"
             android:label="@string/title_activity_artist_song"
-            android:theme="@style/AppTheme"></activity>
+            android:parentActivityName=".mainsong.MainSongActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
