@@ -1,6 +1,12 @@
 package com.example.gooner10.nepaliechord.data
 
 import android.content.Context
+import com.example.gooner10.nepaliechord.NepaliChordConstant
+import com.example.gooner10.nepaliechord.NepaliChordConstant.Companion.ALL_FAVORITE
+import com.example.gooner10.nepaliechord.NepaliChordConstant.Companion.ALL_RECENT
+import com.example.gooner10.nepaliechord.NepaliChordConstant.Companion.ALL_SINGERS
+import com.example.gooner10.nepaliechord.NepaliChordConstant.Companion.ALL_SONGS
+import com.example.gooner10.nepaliechord.artistsong.ArtistSongActivityPresenter
 import com.example.gooner10.nepaliechord.mainsong.MainSongActivityPresenter
 import com.example.gooner10.nepaliechord.model.SingerDetail
 import com.example.gooner10.nepaliechord.model.Song
@@ -14,13 +20,31 @@ import java.util.*
 
 class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger {
     private val database = FirebaseDatabase.getInstance()
-    private val allSongDatabaseRef = database.getReference("allSongs")
-    private val singerDatabaseRef = database.getReference("singers")
-    private val favSongDatabaseRef = database.getReference("favoriteSongs")
-    private val recentSongDatabaseRef = database.getReference("recentSongs")
+    private val allSongDatabaseRef = database.getReference(ALL_SONGS)
+    private val singerDatabaseRef = database.getReference(ALL_SINGERS)
+    private val favSongDatabaseRef = database.getReference(ALL_FAVORITE)
+    private val recentSongDatabaseRef = database.getReference(ALL_RECENT)
 
-    override fun getSongByArtist(singerId: String): List<Song> {
-        val databaseRef = database.getReference("allSongs")
+    override fun getSongByArtist(singerId: String, view: ArtistSongActivityPresenter) {
+        info("singerId $singerId")
+        allSongDatabaseRef.orderByChild("singerId")
+                .equalTo(singerId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val songList: MutableList<Song> = mutableListOf()
+                        info("onDataChange ${dataSnapshot.key}")
+                        info("onDataChange ${dataSnapshot.children.count()}")
+                        for (snapshot in dataSnapshot.children) {
+                            info("song ")
+                            songList.add(snapshot.getValue<Song>(Song::class.java)!!)
+                        }
+                        view.onArtistDataFetched(songList)
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        error("Cancelled $databaseError")
+                    }
+                })
     }
 
 
@@ -58,7 +82,7 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
                     val song: Song = data.getValue(Song::class.java)!!
                     songList.add(song)
                 }
-//                mainSongActivityPresenter.onDataFetched(songList)
+//                mainSongActivityPresenter.onArtistDataFetched(songList)
             }
 
         })
