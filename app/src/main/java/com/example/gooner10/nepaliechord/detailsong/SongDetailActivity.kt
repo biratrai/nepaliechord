@@ -18,7 +18,7 @@ class SongDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_detail)
 
-        val song = intent.getParcelableExtra<Song>("Song")
+        val song = intent.getParcelableExtra<Song>("SongDetail")
         songTitleName.text = song.songTitle
 //        webView.settings.javaScriptEnabled = true
 
