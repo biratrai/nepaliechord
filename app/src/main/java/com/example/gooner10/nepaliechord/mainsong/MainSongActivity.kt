@@ -2,8 +2,10 @@ package com.example.gooner10.nepaliechord.mainsong
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.app.ActivityOptions
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.GravityCompat
@@ -26,7 +28,9 @@ import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import hugo.weaving.DebugLog
+import kotlinx.android.synthetic.main.activity_artist_song.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.all_song_row.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -51,7 +55,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
 //        setColorAnimation()
-        setSupportActionBar(toolbar)
+        setSupportActionBar(mainActivityToolbar)
         val actionbar: ActionBar? = supportActionBar
         actionbar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -142,7 +146,19 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
         Log.d(TAG, "Song clicked  ${singer.singerName}")
         intent = Intent(this, ArtistSongActivity::class.java)
         intent.putExtra("Singer", singer)
-        startActivity(intent)
+
+        // Check if we're running on Android 5.0 or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val options = ActivityOptions
+                    .makeSceneTransitionAnimation(this, singerIcon, "artist-transition")
+            // Apply activity transition
+//            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(intent, options.toBundle())
+        } else {
+            // Swap without transition
+            startActivity(intent)
+        }
+
     }
 
     @DebugLog
