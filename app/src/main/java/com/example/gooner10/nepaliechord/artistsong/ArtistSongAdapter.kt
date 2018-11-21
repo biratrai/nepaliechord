@@ -13,7 +13,6 @@ import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
 import com.example.gooner10.nepaliechord.model.Song
-import com.example.gooner10.nepaliechord.model.SongDetail
 import kotlinx.android.synthetic.main.all_song_row.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -36,17 +35,16 @@ class ArtistSongAdapter(private var list: MutableList<Song>
         holder.item = list[position]
         holder.songTitleView.text = list[position].artistName
         holder.artistNameView.text = list[position].songTitle
-//        GlideApp.with(view as Context).load(list[position].singerPhoto).apply(RequestOptions.circleCropTransform()).into(holder.singerIcon)
 
         holder.view.setOnClickListener { view: View? ->
             info("clicked$view")
-            var intent = Intent(context, SongDetailActivity::class.java)
+            val intent = Intent(context, SongDetailActivity::class.java)
             intent.putExtra("SongDetail", holder.item)
             context!!.startActivity(intent)
         }
 
         holder.view.favorite_icon.setOnClickListener { v: View? ->
-            Log.i(TAG, "View " + v)
+            Log.i(TAG, "View $v")
         }
     }
 
