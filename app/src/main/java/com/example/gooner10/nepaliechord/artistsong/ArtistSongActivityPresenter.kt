@@ -11,15 +11,14 @@ import com.example.gooner10.nepaliechord.model.Song
  */
 
 class ArtistSongActivityPresenter(private val songView: ArtistSongView) : ArtistSongPresenter {
+    private val songDataRepository: SongDataRepositoryImpl = SongDataRepositoryImpl(songView as Context)
+
     override fun onArtistDataFetched(songList: MutableList<Song>) {
         songView.displayArtistSong(songList)
     }
 
-    private val songDataRepository: SongDataRepositoryImpl = SongDataRepositoryImpl(songView as Context)
-
     override fun fetchArtistSong(singerId: String) {
         songDataRepository.getSongByArtist(singerId, this)
     }
-
 
 }
