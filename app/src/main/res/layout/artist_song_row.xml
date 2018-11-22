@@ -63,8 +63,9 @@
         android:id="@+id/artist_favorite_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="@dimen/artist_favorite_icon_margin"
         android:background="@drawable/ic_favorite_red_24dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/eighty_percentage_guideline"
         app:layout_constraintTop_toTopOf="parent" />
