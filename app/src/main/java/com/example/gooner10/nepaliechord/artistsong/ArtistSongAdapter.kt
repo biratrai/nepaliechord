@@ -9,11 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.gooner10.nepaliechord.NepaliChordConstant.Companion.SONG_DETAIL_INTENT
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.example.gooner10.nepaliechord.detailsong.SongDetailActivity
 import com.example.gooner10.nepaliechord.model.Song
-import kotlinx.android.synthetic.main.all_song_row.view.*
+import kotlinx.android.synthetic.main.artist_song_row.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
@@ -36,10 +37,12 @@ class ArtistSongAdapter(private var list: MutableList<Song>
         holder.songTitleView.text = list[position].songTitle
         holder.artistNameView.text = list[position].artistName
 
+        if (list[position].isFavorite)
+            holder.favoriteIcon.visibility = View.VISIBLE
         holder.view.setOnClickListener { view: View? ->
             info("clicked$view")
             val intent = Intent(context, SongDetailActivity::class.java)
-            intent.putExtra("SongDetail", holder.item)
+            intent.putExtra(SONG_DETAIL_INTENT, holder.item)
             context!!.startActivity(intent)
         }
 

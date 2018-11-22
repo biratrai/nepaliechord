@@ -6,6 +6,7 @@ import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.request.RequestOptions
 import com.example.gooner10.nepaliechord.GlideApp
+import com.example.gooner10.nepaliechord.NepaliChordConstant.Companion.SONG_DETAIL_INTENT
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
 import com.example.gooner10.nepaliechord.model.SongDetail
@@ -20,7 +21,7 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_detail)
 
-        val song: Song = intent.extras.get("SongDetail") as Song
+        val song: Song = intent.extras.get(SONG_DETAIL_INTENT) as Song
         songTitleName.text = song.songTitle
         webView.settings.javaScriptEnabled = true
         setSupportActionBar(activitySongToolbar)
