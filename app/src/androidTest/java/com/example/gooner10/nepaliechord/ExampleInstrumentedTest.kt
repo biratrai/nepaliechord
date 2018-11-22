@@ -1,4 +1,4 @@
-package com.example.gooner10.nepaliechord
+package com.nepali.echord
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.example.gooner10.nepaliechord", appContext.packageName)
+        assertEquals("com.nepaliechord", appContext.packageName)
     }
 }

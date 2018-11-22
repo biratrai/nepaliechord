@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gooner10.nepaliechord">
+    package="com.nepali.echord">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".ChordApplication"
+        android:name="com.nepali.echord.ChordApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".mainsong.MainSongActivity"
+            android:name="com.nepali.echord.mainsong.MainSongActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,15 +22,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".detailsong.SongDetailActivity"
-            android:parentActivityName=".detailsong.SongDetailActivity" />
+            android:name="com.nepali.echord.detailsong.SongDetailActivity"
+            android:parentActivityName="com.nepali.echord.detailsong.SongDetailActivity" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.nepali.echord.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".artistsong.ArtistSongActivity"
+            android:name="com.nepali.echord.artistsong.ArtistSongActivity"
             android:label="@string/title_activity_artist_song"
-            android:parentActivityName=".mainsong.MainSongActivity" />
+            android:parentActivityName="com.nepali.echord.mainsong.MainSongActivity" />
     </application>
 
 </manifest>

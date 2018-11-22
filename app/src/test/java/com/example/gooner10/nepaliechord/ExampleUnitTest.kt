@@ -1,4 +1,4 @@
-package com.example.gooner10.nepaliechord
+package com.nepali.echord
 
 import org.junit.Test
 
