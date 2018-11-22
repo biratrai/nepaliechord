@@ -10,5 +10,5 @@ interface SongDataRepository {
     fun getFavoriteSong(): List<Song>
     fun getRecentSong(): List<Song>
     fun getSongByArtist(singerId: String, view: ArtistSongActivityPresenter)
-    fun getSongDetailById(songId: String, view: SongDetailContract.SongDetailPresenter)
+    fun getSongDetailById(songId: String, presenter: SongDetailContract.SongDetailPresenter)
 }
