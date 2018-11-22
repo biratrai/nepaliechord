@@ -174,4 +174,5 @@ Lahure Dai Ko Relimai Relimai
     <string name="song_name">Song Name</string>
     <string name="submit">Submit</string>
     <string name="title_activity_artist_song">ArtistSongActivity</string>
+    <string name="singer_icon">singer icon</string>
 </resources>
