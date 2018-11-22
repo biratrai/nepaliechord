@@ -16,22 +16,31 @@ class Song() : Parcelable {
     var songId: String? = null
     var timeStamp: Long = 0
 
+    constructor(parcel: Parcel) : this() {
+        artistName = parcel.readString()
+        songTitle = parcel.readString()
+        isFavorite = parcel.readByte() != 0.toByte()
+        rating = parcel.readInt()
+        singerId = parcel.readString()
+        songId = parcel.readString()
+        timeStamp = parcel.readLong()
+    }
+
     constructor(artistName: String,
                 songTitle: String,
                 isFavorite: Boolean,
                 rating: Int,
                 singerId: String,
                 songId: String,
-                timeStamp: Long) : this()
-
-    constructor(parcel: Parcel) : this(
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readByte() != 0.toByte(),
-            parcel.readInt(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readLong())
+                timeStamp: Long) : this() {
+        this.artistName = artistName
+        this.songTitle = songTitle
+        this.isFavorite = isFavorite
+        this.rating = rating
+        this.singerId = singerId
+        this.songId = songId
+        this.timeStamp = timeStamp
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(artistName)
