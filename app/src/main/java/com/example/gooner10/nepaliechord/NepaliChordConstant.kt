@@ -6,5 +6,6 @@ class NepaliChordConstant {
         const val ALL_SINGERS = "singers"
         const val ALL_FAVORITE = "favoriteSongs"
         const val ALL_RECENT = "recentSongs"
+        const val SONG_DETAIL = "song-detail"
     }
 }
