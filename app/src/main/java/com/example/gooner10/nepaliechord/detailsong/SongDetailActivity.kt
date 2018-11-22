@@ -8,22 +8,29 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.gooner10.nepaliechord.GlideApp
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
+import com.example.gooner10.nepaliechord.model.SongDetail
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.activity_song_detail.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
-class SongDetailActivity : AppCompatActivity() {
+class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailView, AnkoLogger {
+    private var presenter: SongDetailPresenter = SongDetailPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_detail)
 
-        val song = intent.getParcelableExtra<Song>("SongDetail")
+        val song: Song = intent.extras.get("SongDetail") as Song
+        info("song ${song.songId}")
+        info("song ${song.songTitle}")
         songTitleName.text = song.songTitle
         webView.settings.javaScriptEnabled = true
         setSupportActionBar(activitySongToolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        webView.loadUrl("file:///android_asset/song.html")
+        presenter.fetchSongDetail(song.songId!!)
+//        webView.loadUrl("file:///android_asset/song.html")
 //        webView.loadDataWithBaseURL("", getString(R.string.html), "text/html", "utf-8", "")
 
         GlideApp.with(this).load(R.drawable.ic_account_circle_black_24dp)
@@ -57,5 +64,12 @@ class SongDetailActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = SongDetailActivity::class.java.simpleName
+    }
+
+    override fun displaySongDetail(songDetail: SongDetail) {
+        if (songDetail.songLyrics != "")
+            webView.loadUrl(songDetail.songLyrics)
+        else
+            webView.loadUrl("file:///android_asset/song.html")
     }
 }
