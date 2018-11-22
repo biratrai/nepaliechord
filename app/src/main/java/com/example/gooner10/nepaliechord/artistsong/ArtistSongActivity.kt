@@ -51,4 +51,23 @@ class ArtistSongActivity : AppCompatActivity(), ArtistSongContract.ArtistSongVie
         adapterAll!!.setData(songList)
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            supportFinishAfterTransition()
+        } else {
+            finish()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                supportFinishAfterTransition()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
