@@ -9,7 +9,6 @@ import com.example.gooner10.nepaliechord.GlideApp
 import com.example.gooner10.nepaliechord.R
 import com.example.gooner10.nepaliechord.model.Song
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
-import kotlinx.android.synthetic.main.activity_artist_song.*
 import kotlinx.android.synthetic.main.activity_song_detail.*
 
 class SongDetailActivity : AppCompatActivity() {
