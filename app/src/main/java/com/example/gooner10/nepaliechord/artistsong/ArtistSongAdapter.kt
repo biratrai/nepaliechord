@@ -27,14 +27,14 @@ class ArtistSongAdapter(private var list: MutableList<Song>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.all_song_row, parent, false)
+                .inflate(R.layout.artist_song_row, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = list[position]
-        holder.songTitleView.text = list[position].artistName
-        holder.artistNameView.text = list[position].songTitle
+        holder.songTitleView.text = list[position].songTitle
+        holder.artistNameView.text = list[position].artistName
 
         holder.view.setOnClickListener { view: View? ->
             info("clicked$view")
@@ -43,7 +43,7 @@ class ArtistSongAdapter(private var list: MutableList<Song>
             context!!.startActivity(intent)
         }
 
-        holder.view.favorite_icon.setOnClickListener { v: View? ->
+        holder.view.artist_favorite_icon.setOnClickListener { v: View? ->
             Log.i(TAG, "View $v")
         }
     }
@@ -58,9 +58,9 @@ class ArtistSongAdapter(private var list: MutableList<Song>
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val songTitleView: TextView = view.findViewById<View>(R.id.song_title) as TextView
-        val artistNameView: TextView = view.findViewById<View>(R.id.artist_name) as TextView
-        val favoriteIcon: ImageView = view.findViewById(R.id.favorite_icon) as ImageView
+        val songTitleView: TextView = view.findViewById<View>(R.id.artist_song_title) as TextView
+        val artistNameView: TextView = view.findViewById<View>(R.id.artist_song_name) as TextView
+        val favoriteIcon: ImageView = view.findViewById(R.id.artist_favorite_icon) as ImageView
         val singerIcon: ImageView = view.findViewById(R.id.singerIcon) as ImageView
         var item: Song? = null
 
