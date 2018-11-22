@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_marginTop="4dp"-->
+    <!--android:layout_marginBottom="4dp"-->
+    <!--app:cardCornerRadius="8dp"-->
+    <!--app:cardElevation="8dp">-->
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:id="@+id/singerIcon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:transitionName="artist-transition"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/twenty_percentage_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/twenty_percentage_guideline"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <LinearLayout
+            android:id="@+id/artist_name_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/twenty_percentage_guideline"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/song_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/text_margin"
+                android:layout_marginLeft="@dimen/text_margin"
+                android:layout_marginRight="@dimen/text_margin"
+                android:textAppearance="@android:style/TextAppearance.Holo.Widget.ActionBar.Title"
+                tools:text="Mero Sansar timi nai hau" />
+
+            <TextView
+                android:id="@+id/artist_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:textAppearance="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle"
+                tools:text="Sugam Pokhrel" />
+        </LinearLayout>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/eighty_percentage_guideline"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <ImageView
+            android:id="@+id/favorite_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/ic_favorite_red_24dp"
+            android:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/eighty_percentage_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+<!--</android.support.v7.widget.CardView>-->
