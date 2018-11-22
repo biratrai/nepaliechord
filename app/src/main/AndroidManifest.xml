@@ -30,8 +30,7 @@
         <activity
             android:name=".artistsong.ArtistSongActivity"
             android:label="@string/title_activity_artist_song"
-            android:parentActivityName=".mainsong.MainSongActivity"
-            android:theme="@style/AppTheme" />
+            android:parentActivityName=".mainsong.MainSongActivity" />
     </application>
 
 </manifest>
