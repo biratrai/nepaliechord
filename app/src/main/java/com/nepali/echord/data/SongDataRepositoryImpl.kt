@@ -1,6 +1,10 @@
 package com.nepali.echord.data
 
 import android.content.Context
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.nepali.echord.NepaliChordConstant.Companion.ALL_FAVORITE
 import com.nepali.echord.NepaliChordConstant.Companion.ALL_RECENT
 import com.nepali.echord.NepaliChordConstant.Companion.ALL_SINGERS
@@ -12,10 +16,6 @@ import com.nepali.echord.mainsong.MainSongActivityPresenter
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
 import com.nepali.echord.model.SongDetail
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
@@ -134,6 +134,19 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
             }
 
         })
+
+        for (i in 1..9) {
+            val song = Song(i.toString() + ") Sugam Pokhrel",
+                    ": Mero Sansar",
+                    true,
+                    1 + i,
+                    "1$i",
+                    "1$i",
+                    System.currentTimeMillis())
+//            "file:///android_asset/song.html",
+            favoriteSongList.add(song)
+        }
+        mainSongActivityPresenter.onFavoriteDataFetched(favoriteSongList)
     }
 
     override fun fetchRecentSong(mainSongActivityPresenter: MainSongActivityPresenter) {
@@ -149,5 +162,17 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
             }
 
         })
+        for (i in 1..9) {
+            val song = Song(i.toString() + ") Sugam Pokhrel",
+                    ": Mero Sansar",
+                    true,
+                    1 + i,
+                    "1$i",
+                    "1$i",
+                    System.currentTimeMillis())
+//            "file:///android_asset/song.html",
+            recentSongList.add(song)
+        }
+        mainSongActivityPresenter.onRecentDataFetched(recentSongList)
     }
 }

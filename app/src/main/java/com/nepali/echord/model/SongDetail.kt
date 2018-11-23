@@ -8,5 +8,8 @@ class SongDetail() {
     var songLyrics: String? = null
 
     constructor(songId: String,
-                songLyrics: String) : this()
+                songLyrics: String) : this() {
+        this.songId = songId
+        this.songLyrics = songLyrics
+    }
 }

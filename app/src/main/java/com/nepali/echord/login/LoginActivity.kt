@@ -5,10 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.nepali.echord.R
-import com.nepali.echord.model.SingerDetail
-import com.nepali.echord.model.Song
-import com.nepali.echord.model.SongDetail
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
@@ -17,13 +13,16 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.nepali.echord.R
+import com.nepali.echord.model.SingerDetail
+import com.nepali.echord.model.Song
+import com.nepali.echord.model.SongDetail
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import java.util.*
-
 
 /**
  * A login screen that offers login via email/password.
@@ -65,7 +64,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
                         for (data in dataSnapshot.children) {
                             val singerDetail = data.getValue(SingerDetail::class.java)
                             info("singer Name ${singerDetail!!.singerName}")
-                            if (singerDetail!!.singerName == singerName.text.toString()) {
+                            if (singerDetail.singerName == singerName.text.toString()) {
                                 debug("dataKey ${data.child(data.key!!)}")
                                 singerKey = singerDetail.singerId
                                 info("singerId ${singerDetail.singerId}")
@@ -147,12 +146,10 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
                 if (response == null) {
                     // User pressed back button
                     error(R.string.sign_in_cancelled)
-                    return
                 }
 
                 if (response.error!!.errorCode == ErrorCodes.NO_NETWORK) {
                     error(R.string.no_internet_connection)
-                    return
                 }
 
                 error("Sign-in error: " + R.string.unknown_error + response.error)

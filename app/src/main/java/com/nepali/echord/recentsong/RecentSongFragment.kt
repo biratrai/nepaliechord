@@ -14,15 +14,15 @@ import com.nepali.echord.BaseFragment
 import com.nepali.echord.model.Song
 
 /**
- * A fragment representing a list of Items.
+ * A currentFragment representing a list of Items.
  *
  *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
+ * Activities containing this currentFragment MUST implement the [OnListFragmentInteractionListener]
  * interface.
  */
 /**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
+ * Mandatory empty constructor for the currentFragment manager to instantiate the
+ * currentFragment (e.g. upon screen orientation changes).
  */
 class RecentSongFragment : BaseFragment() {
     private var listener: OnRecentSongFragmentItemListener? = null
@@ -69,7 +69,7 @@ class RecentSongFragment : BaseFragment() {
     }
     /**
      * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
+     * currentFragment to allow an interaction in this currentFragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
      *

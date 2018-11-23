@@ -15,6 +15,9 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
+import com.firebase.ui.auth.AuthUI
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment
 import com.nepali.echord.artistsong.ArtistSongActivity
@@ -24,9 +27,6 @@ import com.nepali.echord.login.LoginActivity
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
 import com.nepali.echord.recentsong.RecentSongFragment
-import com.firebase.ui.auth.AuthUI
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.all_song_row.*
@@ -35,7 +35,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
 
-class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
+class MainSongActivity : AppCompatActivity()
+        , MainSongContract.MainSongView
         , AllSongFragment.OnAllSongFragmentItemListener
         , FavoriteSongFragment.OnFavoriteFragmentItemListener
         , RecentSongFragment.OnRecentSongFragmentItemListener
@@ -52,7 +53,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
 
         viewPager.adapter = pagerAdapter
 
-        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        bottomNavigationBar.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
 //        setColorAnimation()
         setSupportActionBar(mainActivityToolbar)
@@ -142,12 +143,22 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
 
     //region MainSongContract methods
     @DebugLog
-    override fun displaySong(singerList: MutableList<SingerDetail>) {
+    override fun displayArtistSong(singerList: MutableList<SingerDetail>) {
         Log.d(TAG, "songlist: $singerList")
         Log.d(TAG, "currentItem: " + viewPager.currentItem)
-        Log.d(TAG, "current fragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
-        val fragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
-        fragment.setSingerData(singerList)
+        Log.d(TAG, "current currentFragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
+        val currentFragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
+        currentFragment.setSingerData(singerList)
+    }
+
+    override fun displayRecentSong(songList: MutableList<Song>) {
+        val currentFragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
+        currentFragment.setSongData(songList)
+    }
+
+    override fun displayFavoriteSong(songList: MutableList<Song>) {
+        val currentFragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
+        currentFragment.setSongData(songList)
     }
     //endregion
 
