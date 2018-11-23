@@ -9,9 +9,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.nepali.echord.R
 import com.nepali.echord.BaseFragment
+import com.nepali.echord.R
+import com.nepali.echord.allsong.AllSongAdapter
 import com.nepali.echord.model.Song
+import kotlinx.android.synthetic.main.favorite_song_fragment.*
+import kotlinx.android.synthetic.main.recent_song_fragment.*
 
 /**
  * A currentFragment representing a list of Items.
@@ -35,23 +38,23 @@ class RecentSongFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.all_song_fragment, container, false)
-
+        val view = inflater.inflate(R.layout.recent_song_fragment, container, false)
+        val recentSongRecyclerView = view.findViewById(R.id.recentSongList) as RecyclerView
         // Set the adapterAll
-        if (view is RecyclerView) {
-            val context = view.getContext()
-            view.layoutManager = LinearLayoutManager(context)
-            view.adapter = RecentSongAdapter(songList, listener)
-            val dividerItemDecoration = DividerItemDecoration(getContext(), (view.layoutManager as LinearLayoutManager).orientation)
-            view.addItemDecoration(dividerItemDecoration)
-            adapterAll = view.adapter as RecentSongAdapter
-        }
+        recentSongRecyclerView.layoutManager = LinearLayoutManager(context)
+        recentSongRecyclerView.adapter = RecentSongAdapter(songList, listener)
+        val dividerItemDecoration = DividerItemDecoration(context, (recentSongRecyclerView.layoutManager as LinearLayoutManager).orientation)
+        recentSongRecyclerView.addItemDecoration(dividerItemDecoration)
         return view
     }
 
     override fun setSongData(songList: List<Song>) {
         Log.d(TAG, "song data received")
-        adapterAll?.setData(songList)
+        if (songList.isNotEmpty()) {
+            recentSongList.visibility = View.VISIBLE
+            emptyRecentSongData.visibility = View.GONE
+            adapterAll?.setData(songList)
+        }
     }
 
     override fun onDetach() {
@@ -67,6 +70,7 @@ class RecentSongFragment : BaseFragment() {
             throw RuntimeException(context.toString() + " must implement OnAllSongFragmentItemListener")
         }
     }
+
     /**
      * This interface must be implemented by activities that contain this
      * currentFragment to allow an interaction in this currentFragment to be communicated

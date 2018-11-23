@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.nepali.echord.BaseFragment
 import com.nepali.echord.R
 import com.nepali.echord.model.SingerDetail
+import kotlinx.android.synthetic.main.all_song_fragment.*
 
 /**
  * A currentFragment representing a list of Items.
@@ -36,22 +37,23 @@ class AllSongFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.all_song_fragment, container, false)
-
+        val allSongRecyclerView = view.findViewById(R.id.allSongList) as RecyclerView
         // Set the adapterAll
-        if (view is RecyclerView) {
-            val context = view.getContext()
-            view.layoutManager = LinearLayoutManager(context)
-            view.adapter = AllSongAdapter(songList, listener)
-            val dividerItemDecoration = DividerItemDecoration(getContext(), (view.layoutManager as LinearLayoutManager).orientation)
-            view.addItemDecoration(dividerItemDecoration)
-            adapterAll = view.adapter as AllSongAdapter
-        }
+        allSongRecyclerView.layoutManager = LinearLayoutManager(context)
+        allSongRecyclerView.adapter = AllSongAdapter(songList, listener)
+        val dividerItemDecoration = DividerItemDecoration(context, (allSongRecyclerView.layoutManager as LinearLayoutManager).orientation)
+        allSongRecyclerView.addItemDecoration(dividerItemDecoration)
+        adapterAll = allSongRecyclerView.adapter as AllSongAdapter
         return view
     }
 
     override fun setSingerData(singerList: List<SingerDetail>) {
         Log.d(TAG, "song data received")
-        adapterAll?.setData(singerList)
+        if (singerList.isNotEmpty()) {
+            allSongList.visibility = View.VISIBLE
+            emptyAllSongData.visibility = View.GONE
+            adapterAll?.setData(singerList)
+        }
     }
 
     override fun onDetach() {

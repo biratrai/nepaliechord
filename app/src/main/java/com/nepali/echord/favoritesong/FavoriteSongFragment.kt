@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import com.nepali.echord.BaseFragment
 import com.nepali.echord.R
 import com.nepali.echord.model.Song
+import kotlinx.android.synthetic.main.all_song_fragment.*
+import kotlinx.android.synthetic.main.favorite_song_fragment.*
 
 /**
  * A currentFragment representing a list of Items.
@@ -31,22 +33,22 @@ class FavoriteSongFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.favorite_song_fragment, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            val context = view.getContext()
-            view.layoutManager = LinearLayoutManager(context)
-            view.adapter = FavoriteSongAdapter(songList, listener)
-            val dividerItemDecoration = DividerItemDecoration(getContext(), (view.layoutManager as LinearLayoutManager).orientation)
-            view.addItemDecoration(dividerItemDecoration)
-            adapter = view.adapter as FavoriteSongAdapter
-        }
+        val favoriteSongRecyclerView = view.findViewById(R.id.favoriteSongList) as RecyclerView
+        favoriteSongRecyclerView.layoutManager = LinearLayoutManager(context)
+        favoriteSongRecyclerView.adapter = FavoriteSongAdapter(songList, listener)
+        val dividerItemDecoration = DividerItemDecoration(context, (favoriteSongRecyclerView.layoutManager as LinearLayoutManager).orientation)
+        favoriteSongRecyclerView.addItemDecoration(dividerItemDecoration)
+        adapter = favoriteSongRecyclerView.adapter as FavoriteSongAdapter
         return view
     }
 
-     override fun setSongData(songList: List<Song>) {
+    override fun setSongData(songList: List<Song>) {
         Log.d(TAG, "song data received")
-        adapter?.setData(songList)
+        if (songList.isNotEmpty()) {
+            favoriteSongList.visibility = View.VISIBLE
+            emptyFavoriteList.visibility = View.GONE
+            adapter?.setData(songList)
+        }
     }
 
     override fun onAttach(context: Context?) {
