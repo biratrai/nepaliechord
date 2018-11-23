@@ -8,12 +8,14 @@ import com.nepali.echord.model.SingerDetail
 
 interface MainSongContract {
     interface MainSongView {
-        fun displaySong(songList: MutableList<SingerDetail>)
+        fun displaySong(singerList: MutableList<SingerDetail>)
     }
 
     interface MainSongPresenter {
-        fun fetchSong()
+        fun fetchSong(position: Int)
 
-        fun onDataFetched(songList: MutableList<SingerDetail>)
+        fun onArtistDataFetched(singerList: MutableList<SingerDetail>)
+        fun onRecentDataFetched(singerList: MutableList<SingerDetail>)
+        fun onFavoriteDataFetched(singerList: MutableList<SingerDetail>)
     }
 }

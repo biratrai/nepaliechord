@@ -35,7 +35,7 @@ class AllSongAdapter(private var list: ArrayList<SingerDetail>, private val list
         GlideApp.with(listener as Context).load(list[position].singerPhoto).apply(RequestOptions.circleCropTransform()).into(holder.singerIcon)
 
         holder.view.setOnClickListener {
-            listener.onListFragmentInteraction(holder.item!!)
+            listener.onAllSongFragmentInteraction(holder.item!!)
         }
 
         holder.view.favorite_icon.setOnClickListener { v: View? ->

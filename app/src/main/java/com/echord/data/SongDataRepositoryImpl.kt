@@ -81,8 +81,8 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
     /**
      * Function to get All Artist
      */
-    override fun getAllArtist(mainSongActivityPresenter: MainSongActivityPresenter) {
-        info("getAllArtist")
+    override fun fetchAllArtistData(mainSongActivityPresenter: MainSongActivityPresenter) {
+        info("fetchAllArtistData")
         singerDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 info("onCancelled " + p0.message)
@@ -95,14 +95,14 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
                     val song: SingerDetail = data.getValue(SingerDetail::class.java)!!
                     singerList.add(song)
                 }
-                mainSongActivityPresenter.onDataFetched(singerList)
+                mainSongActivityPresenter.onArtistDataFetched(singerList)
             }
 
         })
     }
 
     fun getAllSong(mainSongActivityPresenter: MainSongActivityPresenter) {
-        info("getAllArtist")
+        info("fetchAllArtistData")
         allSongDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 info("onCancelled " + p0.message)
@@ -121,9 +121,9 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
         })
     }
 
-    override fun getFavoriteSong(): List<Song> {
+    override fun fetchFavoriteSong(mainSongActivityPresenter: MainSongActivityPresenter) {
         val favoriteSongList = ArrayList<Song>()
-        info("getAllArtist")
+        info("fetchAllArtistData")
         favSongDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 info("onCancelled " + p0.message)
@@ -134,12 +134,11 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
             }
 
         })
-        return favoriteSongList
     }
 
-    override fun getRecentSong(): List<Song> {
+    override fun fetchRecentSong(mainSongActivityPresenter: MainSongActivityPresenter) {
         val recentSongList = ArrayList<Song>()
-        info("getAllArtist")
+        info("fetchAllArtistData")
         recentSongDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 info("onCancelled " + p0.message)
@@ -150,6 +149,5 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
             }
 
         })
-        return recentSongList
     }
 }

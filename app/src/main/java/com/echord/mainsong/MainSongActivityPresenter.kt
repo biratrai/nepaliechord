@@ -10,15 +10,32 @@ import com.nepali.echord.model.SingerDetail
  */
 
 class MainSongActivityPresenter(private val songView: MainSongContract.MainSongView) : MainSongPresenter {
-    override fun onDataFetched(songList: MutableList<SingerDetail>) {
-        songView.displaySong(songList)
-    }
 
     private val songDataRepository: SongDataRepositoryImpl = SongDataRepositoryImpl(songView as Context)
 
-    override fun fetchSong() {
-        songDataRepository.getAllArtist(this)
+    /**
+     * Function that fetches song for the particular View pager fragment
+     */
+    override fun fetchSong(position: Int) {
+        when (position) {
+            0 -> return songDataRepository.fetchAllArtistData(this)
+            1 -> return songDataRepository.fetchFavoriteSong(this)
+            2 -> return songDataRepository.fetchRecentSong(this)
+
+        }
     }
 
+    //region MainSongPresenter Contract
+    override fun onRecentDataFetched(singerList: MutableList<SingerDetail>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
+    override fun onFavoriteDataFetched(singerList: MutableList<SingerDetail>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onArtistDataFetched(singerList: MutableList<SingerDetail>) {
+        songView.displaySong(singerList)
+    }
+    //endregion
 }

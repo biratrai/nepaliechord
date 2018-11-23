@@ -45,6 +45,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
     private lateinit var colorAnimation: ValueAnimator
 
+    //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -74,7 +75,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 Log.d(TAG, "Selected onPageScrolled position: $position")
 //                colorAnimation.currentPlayTime = (((positionOffset + position) * ANIMATION_DURATION).toLong())
-                presenter.fetchSong()
+                presenter.fetchSong(position)
             }
 
             // Called when the scroll state changes:
@@ -94,7 +95,63 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
             else -> super.onOptionsItemSelected(item)
         }
     }
+    //endregion
 
+    private fun setColorAnimation() {
+        colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.CYAN, Color.GREEN, Color.MAGENTA)
+        colorAnimation.duration = (3 - 1) * ANIMATION_DURATION
+        colorAnimation.addUpdateListener { animator ->
+            pagerAdapter.getRegisteredFragment(viewPager.currentItem).view?.setBackgroundColor(animator.animatedValue as Int)
+        }
+    }
+
+    //region Fragment Listener
+    override fun onFavoriteFragmentInteraction(song: Song) {
+        startSongDetailActivity(song)
+    }
+
+    override fun onRecentFragmentInteraction(song: Song) {
+        startSongDetailActivity(song)
+    }
+
+    private fun startSongDetailActivity(song: Song) {
+        Log.d(TAG, "Song clicked  $song.songTitle")
+        intent = Intent(this, SongDetailActivity::class.java)
+        intent.putExtra("Song", song)
+        startActivity(intent)
+    }
+
+    override fun onAllSongFragmentInteraction(singer: SingerDetail) {
+        Log.d(TAG, "Song clicked  ${singer.singerName}")
+        intent = Intent(this, ArtistSongActivity::class.java)
+        intent.putExtra("Singer", singer)
+
+        // Check if we're running on Android 5.0 or higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val options = ActivityOptions
+                    .makeSceneTransitionAnimation(this, singerIcon, "artist-transition")
+            // Apply activity transition
+//            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(intent, options.toBundle())
+        } else {
+            // Swap without transition
+            startActivity(intent)
+        }
+    }
+    // endregion
+
+    //region MainSongContract methods
+    @DebugLog
+    override fun displaySong(singerList: MutableList<SingerDetail>) {
+        Log.d(TAG, "songlist: $singerList")
+        Log.d(TAG, "currentItem: " + viewPager.currentItem)
+        Log.d(TAG, "current fragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
+        val fragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
+        fragment.setSingerData(singerList)
+    }
+    //endregion
+
+    //region Navigation Listener
     private fun setNavigation() {
         val actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerLayout.addDrawerListener(actionBarToggle)
@@ -126,49 +183,6 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
         }
     }
 
-    private fun setColorAnimation() {
-        colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.CYAN, Color.GREEN, Color.MAGENTA)
-        colorAnimation.duration = (3 - 1) * ANIMATION_DURATION
-        colorAnimation.addUpdateListener { animator ->
-            pagerAdapter.getRegisteredFragment(viewPager.currentItem).view?.setBackgroundColor(animator.animatedValue as Int)
-        }
-    }
-
-    override fun onListFragmentInteraction(song: Song) {
-        Log.d(TAG, "Song clicked  $song.songTitle")
-        intent = Intent(this, SongDetailActivity::class.java)
-        intent.putExtra("Song", song)
-        startActivity(intent)
-    }
-
-    override fun onListFragmentInteraction(singer: SingerDetail) {
-        Log.d(TAG, "Song clicked  ${singer.singerName}")
-        intent = Intent(this, ArtistSongActivity::class.java)
-        intent.putExtra("Singer", singer)
-
-        // Check if we're running on Android 5.0 or higher
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val options = ActivityOptions
-                    .makeSceneTransitionAnimation(this, singerIcon, "artist-transition")
-            // Apply activity transition
-//            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            startActivity(intent, options.toBundle())
-        } else {
-            // Swap without transition
-            startActivity(intent)
-        }
-
-    }
-
-    @DebugLog
-    override fun displaySong(singerList: MutableList<SingerDetail>) {
-        Log.d(TAG, "songlist: $singerList")
-        Log.d(TAG, "currentItem: " + viewPager.currentItem)
-        Log.d(TAG, "current fragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
-        val fragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
-        fragment.setSingerData(singerList)
-    }
-
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
@@ -189,6 +203,7 @@ class MainSongActivity : AppCompatActivity(), MainSongContract.MainSongView
         }
         false
     }
+    //endregion
 
     // Used to define the constant
     companion object {
