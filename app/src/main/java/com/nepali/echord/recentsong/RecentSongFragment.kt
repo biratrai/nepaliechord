@@ -11,9 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.nepali.echord.BaseFragment
 import com.nepali.echord.R
-import com.nepali.echord.allsong.AllSongAdapter
 import com.nepali.echord.model.Song
-import kotlinx.android.synthetic.main.favorite_song_fragment.*
 import kotlinx.android.synthetic.main.recent_song_fragment.*
 
 /**
@@ -30,7 +28,7 @@ import kotlinx.android.synthetic.main.recent_song_fragment.*
 class RecentSongFragment : BaseFragment() {
     private var listener: OnRecentSongFragmentItemListener? = null
     private val songList = arrayListOf<Song>()
-    private var adapterAll: RecentSongAdapter? = null
+    private var recentSongAdapter: RecentSongAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +38,7 @@ class RecentSongFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.recent_song_fragment, container, false)
         val recentSongRecyclerView = view.findViewById(R.id.recentSongList) as RecyclerView
-        // Set the adapterAll
+        // Set the recentSongAdapter
         recentSongRecyclerView.layoutManager = LinearLayoutManager(context)
         recentSongRecyclerView.adapter = RecentSongAdapter(songList, listener)
         val dividerItemDecoration = DividerItemDecoration(context, (recentSongRecyclerView.layoutManager as LinearLayoutManager).orientation)
@@ -49,11 +47,13 @@ class RecentSongFragment : BaseFragment() {
     }
 
     override fun setSongData(songList: List<Song>) {
-        Log.d(TAG, "song data received")
+        Log.d(TAG, "recent song data received ${songList.isNotEmpty()}")
+        recentSongProgressBar.visibility = View.GONE
         if (songList.isNotEmpty()) {
             recentSongList.visibility = View.VISIBLE
-            emptyRecentSongData.visibility = View.GONE
-            adapterAll?.setData(songList)
+            recentSongAdapter?.setData(songList)
+        } else {
+            emptyRecentSongData.visibility = View.VISIBLE
         }
     }
 

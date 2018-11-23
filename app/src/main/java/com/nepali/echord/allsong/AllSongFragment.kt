@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.all_song_fragment.*
 class AllSongFragment : BaseFragment() {
     private var listener: OnAllSongFragmentItemListener? = null
     private val songList = arrayListOf<SingerDetail>()
-    private var adapterAll: AllSongAdapter? = null
+    private var allSongAdapter: AllSongAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,21 +38,23 @@ class AllSongFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.all_song_fragment, container, false)
         val allSongRecyclerView = view.findViewById(R.id.allSongList) as RecyclerView
-        // Set the adapterAll
+        // Set the allSongAdapter
         allSongRecyclerView.layoutManager = LinearLayoutManager(context)
         allSongRecyclerView.adapter = AllSongAdapter(songList, listener)
         val dividerItemDecoration = DividerItemDecoration(context, (allSongRecyclerView.layoutManager as LinearLayoutManager).orientation)
         allSongRecyclerView.addItemDecoration(dividerItemDecoration)
-        adapterAll = allSongRecyclerView.adapter as AllSongAdapter
+        allSongAdapter = allSongRecyclerView.adapter as AllSongAdapter
         return view
     }
 
     override fun setSingerData(singerList: List<SingerDetail>) {
         Log.d(TAG, "song data received")
+        allSongProgressBar.visibility = View.GONE
         if (singerList.isNotEmpty()) {
             allSongList.visibility = View.VISIBLE
-            emptyAllSongData.visibility = View.GONE
-            adapterAll?.setData(singerList)
+            allSongAdapter?.setData(singerList)
+        } else {
+            emptyAllSongData.visibility = View.VISIBLE
         }
     }
 

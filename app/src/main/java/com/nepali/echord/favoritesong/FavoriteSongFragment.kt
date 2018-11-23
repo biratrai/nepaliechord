@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import com.nepali.echord.BaseFragment
 import com.nepali.echord.R
 import com.nepali.echord.model.Song
-import kotlinx.android.synthetic.main.all_song_fragment.*
 import kotlinx.android.synthetic.main.favorite_song_fragment.*
 
 /**
@@ -28,7 +27,7 @@ import kotlinx.android.synthetic.main.favorite_song_fragment.*
  */
 class FavoriteSongFragment : BaseFragment() {
     private var listener: OnFavoriteFragmentItemListener? = null
-    private var adapter: FavoriteSongAdapter? = null
+    private var favoriteSongAdapter: FavoriteSongAdapter? = null
     private val songList = arrayListOf<Song>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,16 +37,18 @@ class FavoriteSongFragment : BaseFragment() {
         favoriteSongRecyclerView.adapter = FavoriteSongAdapter(songList, listener)
         val dividerItemDecoration = DividerItemDecoration(context, (favoriteSongRecyclerView.layoutManager as LinearLayoutManager).orientation)
         favoriteSongRecyclerView.addItemDecoration(dividerItemDecoration)
-        adapter = favoriteSongRecyclerView.adapter as FavoriteSongAdapter
+        favoriteSongAdapter = favoriteSongRecyclerView.adapter as FavoriteSongAdapter
         return view
     }
 
     override fun setSongData(songList: List<Song>) {
-        Log.d(TAG, "song data received")
+        Log.d(TAG, "favorite song data received ${songList.isNotEmpty()}")
+        favoriteSongProgressBar.visibility = View.GONE
         if (songList.isNotEmpty()) {
             favoriteSongList.visibility = View.VISIBLE
-            emptyFavoriteList.visibility = View.GONE
-            adapter?.setData(songList)
+            favoriteSongAdapter?.setData(songList)
+        } else {
+            emptyFavoriteList.visibility = View.VISIBLE
         }
     }
 
