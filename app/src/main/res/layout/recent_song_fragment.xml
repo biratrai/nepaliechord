@@ -5,22 +5,21 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/emptyFavoriteList"
+        android:id="@+id/emptyRecentSongData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/no_data_available" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/favoriteSongList"
-        android:name="com.nepaliechord.FavoriteMusicFragment"
+        android:id="@+id/recentSongList"
+        android:name="com.nepaliechord.SongFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        tools:context="com.nepali.echord.favoritesong.FavoriteSongFragment"
-        tools:listitem="@layout/favorite_song_row" />
+        android:visibility="invisible"
+        tools:context="com.nepali.echord.allsong.AllSongFragment"
+        tools:listitem="@layout/all_song_row" />
 
 </FrameLayout>
-
-
