@@ -19,6 +19,7 @@ import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.nepali.echord.R
+import com.nepali.echord.R.id.*
 import com.nepali.echord.allsong.AllSongFragment
 import com.nepali.echord.artistsong.ArtistSongActivity
 import com.nepali.echord.detailsong.SongDetailActivity
@@ -69,7 +70,7 @@ class MainSongActivity : AppCompatActivity()
             // This method will be invoked when a new page becomes selected.
             override fun onPageSelected(position: Int) {
                 Log.d(TAG, "Selected onPageSelected position: $position")
-
+                setBottomNavigationBarSelectedItem(position)
             }
 
             // This method will be invoked when the current page is scrolled
@@ -85,6 +86,15 @@ class MainSongActivity : AppCompatActivity()
                 Log.d(TAG, "Selected onPageScrollStateChanged position: $state")
             }
         })
+    }
+
+    private fun setBottomNavigationBarSelectedItem(position: Int) {
+        when(position){
+            0 -> bottomNavigationBar.selectedItemId = navigation_home
+            1 -> bottomNavigationBar.selectedItemId = navigation_favorite
+            2 -> bottomNavigationBar.selectedItemId = navigation_new_releases
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
