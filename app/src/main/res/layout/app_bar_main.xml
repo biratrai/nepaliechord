@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        app:itemBackground="@color/secondaryDarkColor"
+        app:itemBackground="@color/colorDark"
         app:itemIconTint="@drawable/navigation_bottom_bar_selector"
         app:itemTextColor="@drawable/navigation_bottom_bar_text_selector"
         app:layout_constraintBottom_toBottomOf="parent"
