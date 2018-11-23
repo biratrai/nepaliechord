@@ -151,7 +151,7 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
 
     override fun fetchRecentSong(mainSongActivityPresenter: MainSongActivityPresenter) {
         val recentSongList = ArrayList<Song>()
-        info("fetchAllArtistData")
+        info("fetchRecentSong")
         recentSongDatabaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 info("onCancelled " + p0.message)

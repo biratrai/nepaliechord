@@ -12,7 +12,6 @@ import com.nepali.echord.model.Song
 /**
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
  * specified [OnFavoriteFragmentItemListener].
- * TODO: Replace the implementation with code for your data type.
  */
 class FavoriteSongAdapter(private var list: List<Song>, private val mListener: OnFavoriteFragmentItemListener?) : RecyclerView.Adapter<FavoriteSongAdapter.ViewHolder>() {
 

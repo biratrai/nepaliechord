@@ -21,7 +21,7 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.all_song_row, parent, false)
+                .inflate(R.layout.favorite_song_row, parent, false)
         return ViewHolder(view)
     }
 
@@ -49,9 +49,8 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val songTitleView: TextView = view.findViewById<View>(R.id.song_title) as TextView
-        val artistNameView: TextView = view.findViewById<View>(R.id.artist_name) as TextView
-        val favoriteIcon: ImageView = view.findViewById(R.id.favorite_icon) as ImageView
+        val songTitleView: TextView = view.findViewById<View>(R.id.favorite_song_title) as TextView
+        val artistNameView: TextView = view.findViewById<View>(R.id.favorite_artist_name) as TextView
         var item: Song? = null
 
         override fun toString(): String {

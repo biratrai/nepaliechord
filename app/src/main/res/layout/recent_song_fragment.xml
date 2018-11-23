@@ -27,7 +27,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:visibility="invisible"
-        tools:context="com.nepali.echord.allsong.AllSongFragment"
-        tools:listitem="@layout/all_song_row" />
+        tools:context="com.nepali.echord.recentsong.RecentSongFragment"
+        tools:listitem="@layout/favorite_song_row" />
 
 </FrameLayout>
