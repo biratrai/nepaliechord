@@ -32,9 +32,9 @@ import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.all_song_row.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.app_tool_bar.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-
 
 class MainSongActivity : AppCompatActivity()
         , MainSongContract.MainSongView
@@ -57,7 +57,7 @@ class MainSongActivity : AppCompatActivity()
         bottomNavigationBar.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
 //        setColorAnimation()
-        setSupportActionBar(mainActivityToolbar)
+        setSupportActionBar(app_toolbar)
         val actionbar: ActionBar? = supportActionBar
         actionbar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -89,7 +89,7 @@ class MainSongActivity : AppCompatActivity()
     }
 
     private fun setBottomNavigationBarSelectedItem(position: Int) {
-        when(position){
+        when (position) {
             0 -> bottomNavigationBar.selectedItemId = navigation_home
             1 -> bottomNavigationBar.selectedItemId = navigation_favorite
             2 -> bottomNavigationBar.selectedItemId = navigation_new_releases
