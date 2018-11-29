@@ -7,19 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.nepali.echord.mainsong.MainSongActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/mainActivityToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar" />
-    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/app_tool_bar"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
