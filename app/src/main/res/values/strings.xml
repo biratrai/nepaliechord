@@ -176,4 +176,5 @@ Lahure Dai Ko Relimai Relimai
     <string name="title_activity_artist_song">ArtistSongActivity</string>
     <string name="singer_icon">singer icon</string>
     <string name="no_data_available">No Data Available</string>
+    <string name="favorite_image_button">Favorite image button</string>
 </resources>
