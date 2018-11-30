@@ -4,9 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/app_tool_bar" />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <include layout="@layout/song_detail_main_content" />
+        <include layout="@layout/app_tool_bar" />
+    </android.support.design.widget.AppBarLayout>
+
+    <include
+        layout="@layout/song_detail_main_content" />
 
     <include layout="@layout/song_detail_bottom_sheet" />
 
@@ -18,7 +27,6 @@
         app:backgroundTint="@color/orange"
         app:layout_anchor="@id/song_detail_bottom_sheet"
         app:layout_anchorGravity="top|end"
-        android:layout_margin="4dp"
         app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
