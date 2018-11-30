@@ -15,16 +15,12 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
-import com.firebase.ui.auth.AuthUI
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.nepali.echord.R
 import com.nepali.echord.R.id.*
 import com.nepali.echord.allsong.AllSongFragment
 import com.nepali.echord.artistsong.ArtistSongActivity
 import com.nepali.echord.detailsong.SongDetailActivity
 import com.nepali.echord.favoritesong.FavoriteSongFragment
-import com.nepali.echord.login.LoginActivity
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
 import com.nepali.echord.recentsong.RecentSongFragment
@@ -34,7 +30,6 @@ import kotlinx.android.synthetic.main.all_song_row.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.app_tool_bar.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 class MainSongActivity : AppCompatActivity()
         , MainSongContract.MainSongView
@@ -183,20 +178,6 @@ class MainSongActivity : AppCompatActivity()
             // close drawer when item is tapped
             drawerLayout.closeDrawers()
 
-            when (menuItem.itemId) {
-                R.id.nav_account -> {
-                    startActivity(LoginActivity.createIntent(this))
-                }
-                R.id.nav_logout -> {
-                    AuthUI.getInstance()
-                            .signOut(this)
-                            .addOnCompleteListener(object : OnCompleteListener<Void> {
-                                override fun onComplete(p0: Task<Void>) {
-                                    info("Sign out complete")
-                                }
-                            })
-                }
-            }
             // Add code here to update the UI based on the item selected
             // For example, swap UI fragments here
 

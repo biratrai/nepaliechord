@@ -25,9 +25,6 @@
             android:name="com.nepali.echord.detailsong.SongDetailActivity"
             android:parentActivityName="com.nepali.echord.detailsong.SongDetailActivity" />
         <activity
-            android:name="com.nepali.echord.login.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name="com.nepali.echord.artistsong.ArtistSongActivity"
             android:label="@string/title_activity_artist_song"
             android:parentActivityName="com.nepali.echord.mainsong.MainSongActivity" />
