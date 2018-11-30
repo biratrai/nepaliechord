@@ -23,8 +23,6 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         songTitleName.text = song.songTitle
         webView.settings.javaScriptEnabled = true
         webView.setBackgroundColor(Color.TRANSPARENT)
-//        setSupportActionBar(app_toolbar)
-//        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         hideSystemUI()
         presenter.fetchSongDetail(song.songId!!)
 
