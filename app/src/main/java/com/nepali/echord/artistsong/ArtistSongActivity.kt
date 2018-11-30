@@ -29,7 +29,6 @@ class ArtistSongActivity : AppCompatActivity(), ArtistSongContract.ArtistSongVie
         setContentView(R.layout.activity_artist_song)
 
         val singer: SingerDetail = intent.getParcelableExtra("Singer")
-        presenter.fetchArtistSong(singer.singerId!!)
 
         collapsing_toolbar.title = singer.singerName
 
@@ -40,6 +39,7 @@ class ArtistSongActivity : AppCompatActivity(), ArtistSongContract.ArtistSongVie
         GlideApp.with(this).load(singer.singerPhoto).apply(RequestOptions.bitmapTransform(multi)).into(backdrop)
 
         adapterAll = ArtistSongAdapter(songList, this)
+        presenter.fetchArtistSong(singer.singerId!!)
         artistSongRecyclerView.adapter = adapterAll
         artistSongRecyclerView.layoutManager = LinearLayoutManager(this)
         val dividerItemDecoration = DividerItemDecoration(this, (artistSongRecyclerView.layoutManager as LinearLayoutManager).orientation)

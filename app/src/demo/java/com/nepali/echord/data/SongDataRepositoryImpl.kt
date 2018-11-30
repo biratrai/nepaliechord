@@ -4,12 +4,15 @@ import android.content.Context
 import com.nepali.echord.artistsong.ArtistSongActivityPresenter
 import com.nepali.echord.detailsong.SongDetailContract
 import com.nepali.echord.mainsong.MainSongActivityPresenter
+import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
+import com.nepali.echord.model.SongDetail
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
 
 class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger {
+    private var context: Context = context
 
     /**
      * Function to get Song By Artist ID
@@ -17,7 +20,7 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
     override fun getSongByArtist(singerId: String, view: ArtistSongActivityPresenter) {
         info("singerId $singerId")
         val allSongByArtistList = ArrayList<Song>()
-        for (i in 1..9) {
+        for (i in 1..7) {
             val song = Song(i.toString() + ") Sugam Pokhrel",
                     ": Mero Sansar",
                     true,
@@ -25,27 +28,19 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
                     "1$i",
                     "1$i",
                     System.currentTimeMillis())
-//            "file:///android_asset/song.html",
             allSongByArtistList.add(song)
         }
+        view.onArtistDataFetched(allSongByArtistList)
     }
 
     /**
      * Function to get Sond Detail by SongId
      */
     override fun getSongDetailById(songId: String, presenter: SongDetailContract.SongDetailPresenter) {
-        val allSongByIdList = ArrayList<Song>()
-        for (i in 1..9) {
-            val song = Song(i.toString() + ") Sugam Pokhrel",
-                    ": Mero Sansar",
-                    true,
-                    1 + i,
-                    "1$i",
-                    "1$i",
-                    System.currentTimeMillis())
-//            "file:///android_asset/song.html",
-            allSongByIdList.add(song)
-        }
+        val songDetail = SongDetail()
+        songDetail.songId = "123"
+        songDetail.songLyrics = ""
+        presenter.onSongDataFetched(songDetail)
     }
 
     /**
@@ -53,18 +48,14 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
      */
     override fun fetchAllArtistData(mainSongActivityPresenter: MainSongActivityPresenter) {
         info("fetchAllArtistData")
-        val allArtistList = ArrayList<Song>()
+        val allArtistList = mutableListOf<SingerDetail>()
         for (i in 1..9) {
-            val song = Song(i.toString() + ") Sugam Pokhrel",
-                    ": Mero Sansar",
-                    true,
-                    1 + i,
-                    "1$i",
-                    "1$i",
-                    System.currentTimeMillis())
-//            "file:///android_asset/song.html",
-            allArtistList.add(song)
+            val singerDetail = SingerDetail(i.toString()
+                    , "Sugam Pokhrel"
+                    , "https://images.freeimages.com/images/large-previews/9af/peter-soldatov-arbat-singer-1545379.jpg")
+            allArtistList.add(singerDetail)
         }
+        mainSongActivityPresenter.onArtistDataFetched(allArtistList)
     }
 
     fun getAllSong(mainSongActivityPresenter: MainSongActivityPresenter) {
