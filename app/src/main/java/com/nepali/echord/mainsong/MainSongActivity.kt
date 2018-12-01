@@ -30,6 +30,7 @@ import kotlinx.android.synthetic.main.all_song_row.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.app_tool_bar.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 class MainSongActivity : AppCompatActivity()
         , MainSongContract.MainSongView
@@ -41,6 +42,7 @@ class MainSongActivity : AppCompatActivity()
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager, this)
     private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
     private lateinit var colorAnimation: ValueAnimator
+    private var isFirst = true
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,27 +62,36 @@ class MainSongActivity : AppCompatActivity()
 
         setNavigation()
 
-        viewPager.addOnPageChangeListener(object : OnPageChangeListener {
+        viewPager.addOnPageChangeListener(onPageChangeListener())
+
+    }
+
+    private fun onPageChangeListener(): OnPageChangeListener {
+        return object : OnPageChangeListener {
 
             // This method will be invoked when a new page becomes selected.
             override fun onPageSelected(position: Int) {
-                Log.d(TAG, "Selected onPageSelected position: $position")
+                info("Selected onPageSelected position: $position")
                 setBottomNavigationBarSelectedItem(position)
+                presenter.fetchSong(position)
             }
 
             // This method will be invoked when the current page is scrolled
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                Log.d(TAG, "Selected onPageScrolled position: $position")
-//                colorAnimation.currentPlayTime = (((positionOffset + position) * ANIMATION_DURATION).toLong())
-                presenter.fetchSong(position)
+                info("Selected onPageScrolled position: $position")
+                //                colorAnimation.currentPlayTime = (((positionOffset + position) * ANIMATION_DURATION).toLong())
+                if (isFirst) {
+                    presenter.fetchSong(position)
+                    isFirst = false
+                }
             }
 
             // Called when the scroll state changes:
             // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
             override fun onPageScrollStateChanged(state: Int) {
-                Log.d(TAG, "Selected onPageScrollStateChanged position: $state")
+                info("Selected onPageScrollStateChanged position: $state")
             }
-        })
+        }
     }
 
     private fun setBottomNavigationBarSelectedItem(position: Int) {
@@ -149,19 +160,19 @@ class MainSongActivity : AppCompatActivity()
     //region MainSongContract methods
     @DebugLog
     override fun displayArtistSong(singerList: MutableList<SingerDetail>) {
-        Log.d(TAG, "songlist: $singerList")
-        Log.d(TAG, "currentItem: " + viewPager.currentItem)
-        Log.d(TAG, "current currentFragment " + pagerAdapter.getRegisteredFragment(viewPager.currentItem))
+        Log.d(TAG, "displayArtistSong songlist: $singerList")
         val currentFragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
         currentFragment.setSingerData(singerList)
     }
 
     override fun displayRecentSong(songList: MutableList<Song>) {
+        Log.d(TAG, "displayRecentSong songlist: $songList")
         val currentFragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
         currentFragment.setSongData(songList)
     }
 
     override fun displayFavoriteSong(songList: MutableList<Song>) {
+        Log.d(TAG, "displayFavoriteSong songlist: $songList")
         val currentFragment = pagerAdapter.getRegisteredFragment(viewPager.currentItem)
         currentFragment.setSongData(songList)
     }
