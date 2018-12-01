@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,8 @@ import com.nepali.echord.BaseFragment
 import com.nepali.echord.R
 import com.nepali.echord.model.Song
 import kotlinx.android.synthetic.main.recent_song_fragment.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 /**
  * A currentFragment representing a list of Items.
@@ -25,7 +26,7 @@ import kotlinx.android.synthetic.main.recent_song_fragment.*
  * Mandatory empty constructor for the currentFragment manager to instantiate the
  * currentFragment (e.g. upon screen orientation changes).
  */
-class RecentSongFragment : BaseFragment() {
+class RecentSongFragment : BaseFragment(), AnkoLogger {
     private var listener: OnRecentSongFragmentItemListener? = null
     private val songList = arrayListOf<Song>()
     private var recentSongAdapter: RecentSongAdapter? = null
@@ -43,11 +44,13 @@ class RecentSongFragment : BaseFragment() {
         recentSongRecyclerView.adapter = RecentSongAdapter(songList, listener)
         val dividerItemDecoration = DividerItemDecoration(context, (recentSongRecyclerView.layoutManager as LinearLayoutManager).orientation)
         recentSongRecyclerView.addItemDecoration(dividerItemDecoration)
+        recentSongAdapter = recentSongRecyclerView.adapter as RecentSongAdapter
         return view
     }
 
     override fun setSongData(songList: List<Song>) {
-        Log.d(TAG, "recent song data received ${songList.isNotEmpty()}")
+        info("recent song data received ${songList.isNotEmpty()}")
+        info("song data ${songList.size}")
         recentSongProgressBar.visibility = View.GONE
         if (songList.isNotEmpty()) {
             recentSongList.visibility = View.VISIBLE
@@ -86,7 +89,6 @@ class RecentSongFragment : BaseFragment() {
 
     companion object {
         private const val SONG_TITLE = "song-title"
-        private val TAG = RecentSongFragment::class.java.simpleName
 
         fun newInstance(): RecentSongFragment {
             val fragment = RecentSongFragment()
