@@ -2,6 +2,7 @@ package com.nepali.echord.allsong
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -36,6 +37,7 @@ class AllSongFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         val view = inflater.inflate(R.layout.all_song_fragment, container, false)
         val allSongRecyclerView = view.findViewById(R.id.allSongList) as RecyclerView
         // Set the allSongAdapter
@@ -88,6 +90,10 @@ class AllSongFragment : BaseFragment() {
     companion object {
         private const val SONG_TITLE = "song-title"
         private val TAG = AllSongFragment::class.java.simpleName
+
+        init {
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        }
 
         fun newInstance(title: String): AllSongFragment {
             val fragment = AllSongFragment()

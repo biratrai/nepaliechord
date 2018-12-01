@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener
 import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.MenuItem
 import com.nepali.echord.R
@@ -48,7 +49,7 @@ class MainSongActivity : AppCompatActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         viewPager.adapter = pagerAdapter
 
         bottomNavigationBar.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
@@ -224,5 +225,8 @@ class MainSongActivity : AppCompatActivity()
         private val TAG = MainSongActivity::class.java.simpleName
         private const val ANIMATION_DURATION = 10000000000L
 
+        init {
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        }
     }
 }

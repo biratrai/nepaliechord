@@ -1,8 +1,8 @@
 package com.nepali.echord.allsong
 
+import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -62,5 +62,9 @@ class AllSongAdapter(private var list: ArrayList<SingerDetail>, private val list
 
     companion object {
         private val TAG = AllSongAdapter::class.java.simpleName
+
+        init {
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        }
     }
 }
