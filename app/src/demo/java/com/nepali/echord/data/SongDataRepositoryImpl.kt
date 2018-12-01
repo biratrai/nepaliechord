@@ -107,4 +107,8 @@ class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger 
         }
         mainSongActivityPresenter.onRecentDataFetched(recentSongList)
     }
+
+    override fun handleFavoriteSong(songId: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

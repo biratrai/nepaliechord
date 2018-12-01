@@ -8,6 +8,9 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
 class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger {
+    override fun handleFavoriteSong(songId: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     /**
      * Function to get Song By Artist ID
