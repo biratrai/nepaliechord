@@ -64,7 +64,8 @@ class ArtistSongAdapter(private var list: MutableList<Song>
         val songTitleView: TextView = view.findViewById<View>(R.id.artist_song_title) as TextView
         val artistNameView: TextView = view.findViewById<View>(R.id.artist_song_name) as TextView
         val favoriteIcon: ImageView = view.findViewById(R.id.artist_favorite_icon) as ImageView
-        val singerIcon: ImageView = view.findViewById(R.id.singerIcon) as ImageView
+        val tabText: TextView = view.findViewById(R.id.tab_text) as TextView
+        val chordText: TextView = view.findViewById(R.id.chord_text) as TextView
         var item: Song? = null
 
         override fun toString(): String {
