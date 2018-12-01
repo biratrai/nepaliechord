@@ -10,4 +10,5 @@ interface SongDataRepository {
     fun fetchRecentSong(mainSongActivityPresenter: MainSongActivityPresenter)
     fun getSongByArtist(singerId: String, view: ArtistSongActivityPresenter)
     fun getSongDetailById(songId: String, presenter: SongDetailContract.SongDetailPresenter)
+    fun handleFavoriteSong(songId: String)
 }
