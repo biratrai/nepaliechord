@@ -26,7 +26,7 @@ class FavoriteSongAdapter(private var list: List<Song>, private val mListener: O
         holder.artistNameView.text = list[position].songTitle
 
         holder.mView.setOnClickListener {
-            mListener?.onFavoriteFragmentInteraction(holder.item!!)
+            mListener?.onFavoriteFragmentInteraction(list[position])
         }
     }
 

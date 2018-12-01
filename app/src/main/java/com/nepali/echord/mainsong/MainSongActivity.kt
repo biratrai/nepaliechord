@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.MenuItem
+import com.nepali.echord.NepaliChordConstant
 import com.nepali.echord.R
 import com.nepali.echord.R.id.*
 import com.nepali.echord.allsong.AllSongFragment
@@ -125,17 +126,19 @@ class MainSongActivity : AppCompatActivity()
 
     //region Fragment Listener
     override fun onFavoriteFragmentInteraction(song: Song) {
+        info("onFavoriteFragmentInteraction: $song")
         startSongDetailActivity(song)
     }
 
     override fun onRecentFragmentInteraction(song: Song) {
+        info("onRecentFragmentInteraction: $song")
         startSongDetailActivity(song)
     }
 
     private fun startSongDetailActivity(song: Song) {
         Log.d(TAG, "Song clicked  $song.songTitle")
         intent = Intent(this, SongDetailActivity::class.java)
-        intent.putExtra("Song", song)
+        intent.putExtra(NepaliChordConstant.SONG_DETAIL_INTENT, song)
         startActivity(intent)
     }
 

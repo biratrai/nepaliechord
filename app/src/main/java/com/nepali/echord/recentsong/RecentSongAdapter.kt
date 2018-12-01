@@ -29,7 +29,7 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
         holder.artistNameView.text = list[position].songTitle
 
         holder.view.setOnClickListener {
-            listener?.onRecentFragmentInteraction(holder.item!!)
+            listener?.onRecentFragmentInteraction(list[position])
         }
 
 //        holder.view.favorite_icon.setOnClickListener { v: View? ->
