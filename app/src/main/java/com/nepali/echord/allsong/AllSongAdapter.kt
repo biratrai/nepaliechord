@@ -1,6 +1,5 @@
 package com.nepali.echord.allsong
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.request.RequestOptions
-import com.nepali.echord.GlideApp
 import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
+import com.nepali.echord.util.inflate
+import com.nepali.echord.util.loadCircularImage
 import kotlinx.android.synthetic.main.all_song_row.view.*
 
 /**
@@ -23,19 +22,16 @@ import kotlinx.android.synthetic.main.all_song_row.view.*
 class AllSongAdapter(private var list: ArrayList<SingerDetail>, private val listener: OnAllSongFragmentItemListener?) : RecyclerView.Adapter<AllSongAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.all_song_row, parent, false)
+        val view = parent.inflate(R.layout.all_song_row)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = list[position]
         holder.songTitleView.text = list[position].singerName
-//        holder.artistNameView.text = list[position].songTitle
-        GlideApp.with(listener as Context).load(list[position].singerPhoto).apply(RequestOptions.circleCropTransform()).into(holder.singerIcon)
-
+        holder.singerIcon.loadCircularImage(list[position].singerPhoto!!)
         holder.view.setOnClickListener {
-            listener.onAllSongFragmentInteraction(holder.item!!)
+            listener!!.onAllSongFragmentInteraction(holder.item!!)
         }
 
         holder.view.favorite_icon.setOnClickListener { v: View? ->

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -14,6 +13,7 @@ import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.nepali.echord.detailsong.SongDetailActivity
 import com.nepali.echord.model.Song
+import com.nepali.echord.util.inflate
 import kotlinx.android.synthetic.main.artist_song_row.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
@@ -27,8 +27,7 @@ class ArtistSongAdapter(private var list: MutableList<Song>
     : RecyclerView.Adapter<ArtistSongAdapter.ViewHolder>(), AnkoLogger {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.artist_song_row, parent, false)
+        val view = parent.inflate(R.layout.artist_song_row)
         return ViewHolder(view)
     }
 

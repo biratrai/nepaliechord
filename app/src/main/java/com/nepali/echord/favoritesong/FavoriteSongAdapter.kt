@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.nepali.echord.R
 import com.nepali.echord.favoritesong.FavoriteSongFragment.OnFavoriteFragmentItemListener
 import com.nepali.echord.model.Song
+import com.nepali.echord.util.inflate
 
 /**
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
@@ -16,8 +17,7 @@ import com.nepali.echord.model.Song
 class FavoriteSongAdapter(private var list: List<Song>, private val mListener: OnFavoriteFragmentItemListener?) : RecyclerView.Adapter<FavoriteSongAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.favorite_song_row, parent, false)
+        val view = parent.inflate(R.layout.favorite_song_row)
         return ViewHolder(view)
     }
 

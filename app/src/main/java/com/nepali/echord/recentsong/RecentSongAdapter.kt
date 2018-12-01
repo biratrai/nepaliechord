@@ -2,14 +2,13 @@ package com.nepali.echord.recentsong
 
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.nepali.echord.model.Song
+import com.nepali.echord.util.inflate
 import kotlinx.android.synthetic.main.all_song_row.view.*
 
 /**
@@ -20,8 +19,7 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
         RecyclerView.Adapter<RecentSongAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.favorite_song_row, parent, false)
+        val view = parent.inflate(R.layout.favorite_song_row)
         return ViewHolder(view)
     }
 
