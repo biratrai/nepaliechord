@@ -1,7 +1,6 @@
 package com.nepali.echord.recentsong
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -9,17 +8,18 @@ import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.nepali.echord.model.Song
 import com.nepali.echord.util.inflate
-import kotlinx.android.synthetic.main.all_song_row.view.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 
 /**
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
  * specified [OnAllSongFragmentItemListener].
  */
 class RecentSongAdapter(private var list: List<Song>, private val listener: RecentSongFragment.OnRecentSongFragmentItemListener?) :
-        RecyclerView.Adapter<RecentSongAdapter.ViewHolder>() {
+        RecyclerView.Adapter<RecentSongAdapter.ViewHolder>(), AnkoLogger {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = parent.inflate(R.layout.favorite_song_row)
+        val view = parent.inflate(R.layout.recent_song_row)
         return ViewHolder(view)
     }
 
@@ -32,9 +32,9 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
             listener?.onRecentFragmentInteraction(holder.item!!)
         }
 
-        holder.view.favorite_icon.setOnClickListener { v: View? ->
-            Log.i(TAG, "View $v")
-        }
+//        holder.view.favorite_icon.setOnClickListener { v: View? ->
+//            Log.i(TAG, "View $v")
+//        }
     }
 
     override fun getItemCount(): Int {
@@ -43,6 +43,7 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
 
     fun setData(songList: List<Song>) {
         list = songList
+        info("list size: ${list.size}")
         notifyDataSetChanged()
     }
 
