@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
+import android.view.WindowManager
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.request.RequestOptions
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.content_artist_song.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 
+
 class ArtistSongActivity : AppCompatActivity(), ArtistSongContract.ArtistSongView, AnkoLogger {
     private var presenter: ArtistSongActivityPresenter = ArtistSongActivityPresenter(this)
     private var songList: MutableList<Song> = mutableListOf()
@@ -30,14 +32,21 @@ class ArtistSongActivity : AppCompatActivity(), ArtistSongContract.ArtistSongVie
 
         val singer: SingerDetail = intent.getParcelableExtra("Singer")
 
-        collapsing_toolbar.title = singer.singerName
-
+        // Set Transparent StatusBar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }
         setSupportActionBar(artistActivityToolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        collapsing_toolbar.title = singer.singerName
+
 
         val multi = MultiTransformation(GrayscaleTransformation(), FitCenter())
         GlideApp.with(this).load(singer.singerPhoto).apply(RequestOptions.bitmapTransform(multi)).into(backdrop)
+        setRecyclerView(singer)
+    }
 
+    private fun setRecyclerView(singer: SingerDetail) {
         adapterAll = ArtistSongAdapter(songList, this)
         presenter.fetchArtistSong(singer.singerId!!)
         artistSongRecyclerView.adapter = adapterAll
