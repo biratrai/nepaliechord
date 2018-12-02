@@ -1,16 +1,13 @@
 package com.nepali.echord.util
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.os.Build
+import android.view.*
 import android.widget.ImageView
 import com.bumptech.glide.request.RequestOptions
 import com.nepali.echord.GlideApp
 import com.nepali.echord.R
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 
-inline fun favSongHandler(){
+inline fun favSongHandler() {
 //        if (song.isFavorite) {
 //            favoriteFabIcon.background = ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border_black_24dp, null)
 //            song.isFavorite = false
@@ -26,8 +23,15 @@ fun ViewGroup.inflate(layoutRes: Int): View {
 
 fun ImageView.loadCircularImage(imageUrl: String) {
     GlideApp.with(this).load(imageUrl)
-                .placeholder(R.drawable.ic_account_circle_black_24dp)
-                .error(R.drawable.ic_account_circle_black_24dp)
-                .apply(RequestOptions.circleCropTransform())
-                .into(this)
+            .placeholder(R.drawable.ic_account_circle_black_24dp)
+            .error(R.drawable.ic_account_circle_black_24dp)
+            .apply(RequestOptions.circleCropTransform())
+            .into(this)
+}
+
+fun makeStatusBarTranslucent(window: Window) {
+    // Set Transparent StatusBar
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    }
 }

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
-import android.view.WindowManager
 import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.request.RequestOptions
@@ -14,6 +13,7 @@ import com.nepali.echord.GlideApp
 import com.nepali.echord.R
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
+import com.nepali.echord.util.makeStatusBarTranslucent
 import jp.wasabeef.glide.transformations.GrayscaleTransformation
 import kotlinx.android.synthetic.main.activity_artist_song.*
 import kotlinx.android.synthetic.main.content_artist_song.*
@@ -32,18 +32,20 @@ class ArtistSongActivity : AppCompatActivity(), ArtistSongContract.ArtistSongVie
 
         val singer: SingerDetail = intent.getParcelableExtra("Singer")
 
-        // Set Transparent StatusBar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        }
-        setSupportActionBar(artistActivityToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        makeStatusBarTranslucent(window)
+
         collapsing_toolbar.title = singer.singerName
 
-
-        val multi = MultiTransformation(GrayscaleTransformation(), FitCenter())
-        GlideApp.with(this).load(singer.singerPhoto).apply(RequestOptions.bitmapTransform(multi)).into(backdrop)
+        loadImage(singer)
         setRecyclerView(singer)
+    }
+
+    private fun loadImage(singer: SingerDetail) {
+        val multi = MultiTransformation(FitCenter(), GrayscaleTransformation())
+        val requestOptions = RequestOptions.bitmapTransform(multi)
+                .placeholder(R.drawable.ic_account_circle_black_24dp)
+                .error(R.drawable.ic_account_circle_black_24dp)
+        GlideApp.with(this).load(singer.singerPhoto).apply(requestOptions).into(backdrop)
     }
 
     private fun setRecyclerView(singer: SingerDetail) {
