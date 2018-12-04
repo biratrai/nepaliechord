@@ -4,10 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        layout="@layout/song_detail_main_content" />
+    <include layout="@layout/song_detail_main_content" />
 
     <include layout="@layout/song_detail_bottom_sheet" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/speedFabIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@android:color/white"
+        app:backgroundTint="@color/orange"
+        app:layout_anchor="@id/favoriteFabIcon"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@drawable/ic_forward_30_black_24dp"
+        android:layout_marginBottom="80dp"/>
+
+    <View
+        android:id="@+id/dummy"
+        android:layout_width="1dp"
+        android:layout_height="16dp"
+        app:layout_anchor="@id/speedFabIcon"
+        app:layout_anchorGravity="top|right|end" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/favoriteFabIcon"
