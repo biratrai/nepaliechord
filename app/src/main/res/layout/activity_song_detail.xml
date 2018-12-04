@@ -14,9 +14,11 @@
         android:layout_height="wrap_content"
         android:tint="@android:color/white"
         app:backgroundTint="@color/orange"
-        app:layout_anchor="@id/favoriteFabIcon"
+        android:layout_marginEnd="4dp"
+        app:layout_anchor="@id/playFabIcon"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@drawable/ic_forward_30_black_24dp"
+        app:rippleColor="@color/primaryDarkColor"
+        app:srcCompat="@drawable/ic_forward_5_black_24dp"
         android:layout_marginBottom="80dp"/>
 
     <View
@@ -27,10 +29,11 @@
         app:layout_anchorGravity="top|right|end" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/favoriteFabIcon"
+        android:id="@+id/playFabIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:tint="@android:color/white"
+        android:layout_marginEnd="4dp"
         app:backgroundTint="@color/orange"
         app:layout_anchor="@id/song_detail_bottom_sheet"
         app:layout_anchorGravity="top|end"
