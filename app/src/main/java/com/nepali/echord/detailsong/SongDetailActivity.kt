@@ -34,55 +34,62 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         hideSystemUI()
         presenter.fetchSongDetail(song.songId!!)
 
-        playFabIcon.setOnClickListener { view: View? ->
-            isPlaying = !isPlaying
-            val backgroundImage: Int
-            if (isPlaying) {
-                backgroundImage = R.drawable.ic_pause_black_24dp
-                mScrollDown.run()
-            } else {
-                backgroundImage = R.drawable.ic_play_arrow_black_24dp
-                scroll_view.scrollBy(0, 0)
-                handler.removeCallbacks(null)
-            }
+        playFabIcon.setOnClickListener(playIconListener)
 
-            val imageView = view as ImageView
-            imageView.setImageResource(backgroundImage)
-        }
-
-        speedFabIcon.setOnClickListener { view: View? ->
-            val backgroundImage: Int
-            when (speedMode) {
-                Speed.NORMAL -> {
-                    backgroundImage = R.drawable.ic_forward_5_black_24dp
-                    speedMode = Speed.FAST
-                    currentSpeed = 200
-                    handler.removeCallbacksAndMessages(null)
-                    mScrollDown.run()
-                }
-                Speed.FAST -> {
-                    backgroundImage = R.drawable.ic_forward_10_black_24dp
-                    speedMode = Speed.FLASH
-                    currentSpeed = 100
-                    handler.removeCallbacksAndMessages(null)
-                    mScrollDown.run()
-                }
-                Speed.FLASH -> {
-                    backgroundImage = R.drawable.ic_forward_30_black_24dp
-                    speedMode = Speed.NORMAL
-                    currentSpeed = 300
-                    handler.removeCallbacksAndMessages(null)
-                    mScrollDown.run()
-                }
-            }
-            val imageView = view as ImageView
-            imageView.setImageResource(backgroundImage)
-        }
+        speedFabIcon.setOnClickListener(speedIconListener)
     }
 
-    private val mScrollDown = object : Runnable {
+    /**
+     * Listener that responds to the play FAB button press
+     */
+    private val playIconListener = View.OnClickListener { view: View? ->
+        isPlaying = !isPlaying
+        val backgroundImage: Int
+        if (isPlaying) {
+            backgroundImage = R.drawable.ic_pause_black_24dp
+            scrollDown.run()
+        } else {
+            backgroundImage = R.drawable.ic_play_arrow_black_24dp
+            scroll_view.scrollBy(0, 0)
+            handler.removeCallbacks(scrollDown)
+        }
+
+        val imageView = view as ImageView
+        imageView.setImageResource(backgroundImage)
+    }
+
+    /**
+     * Listener that responds to the speed FAB button press
+     */
+    private val speedIconListener = View.OnClickListener { view: View? ->
+        val backgroundImage: Int
+        when (speedMode) {
+            Speed.NORMAL -> {
+                backgroundImage = R.drawable.ic_forward_10_black_24dp
+                speedMode = Speed.FAST
+                currentSpeed = 200
+
+            }
+            Speed.FAST -> {
+                backgroundImage = R.drawable.ic_forward_30_black_24dp
+                speedMode = Speed.FLASH
+                currentSpeed = 100
+            }
+            Speed.FLASH -> {
+                backgroundImage = R.drawable.ic_forward_5_black_24dp
+                speedMode = Speed.NORMAL
+                currentSpeed = 300
+            }
+        }
+        val imageView = view as ImageView
+        imageView.setImageResource(backgroundImage)
+    }
+
+    /**
+     * Runnable that scrolls the scroll view after the user selected delay
+     */
+    private val scrollDown = object : Runnable {
         override fun run() {
-//            webView.scrollBy(0, 10)
             scroll_view.scrollBy(0, 10)
             handler.postDelayed(this, currentSpeed)
         }
@@ -110,6 +117,9 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         if (hasFocus) hideSystemUI()
     }
 
+    /**
+     * Make screen immersive
+     */
     private fun hideSystemUI() {
         // Enables regular immersive mode.
         // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
@@ -124,14 +134,19 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
-    // Shows the system bars by removing all the flags
-// except for the ones that make the content appear under the system bars.
+    /**
+     * Shows the system bars by removing all the flags except for the ones
+     * that make the content appear under the system bars.
+     */
     private fun showSystemUI() {
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
     }
 
+    /**
+     * Enum to define the user selected speed
+     */
     enum class Speed {
         NORMAL, FAST, FLASH
     }
