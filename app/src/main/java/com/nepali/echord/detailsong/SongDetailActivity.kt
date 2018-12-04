@@ -21,6 +21,7 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
     private val handler = Handler()
     private var speedMode = Speed.NORMAL
     private var currentSpeed = 300L
+    private var isPlaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +34,24 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         hideSystemUI()
         presenter.fetchSongDetail(song.songId!!)
 
-        playFabIcon.setOnClickListener { v: View? ->
-            setSong(song)
-            mScrollDown.run()
+        playFabIcon.setOnClickListener { view: View? ->
+            isPlaying = !isPlaying
+            val backgroundImage: Int
+            if (isPlaying) {
+                backgroundImage = R.drawable.ic_pause_black_24dp
+                mScrollDown.run()
+            } else {
+                backgroundImage = R.drawable.ic_play_arrow_black_24dp
+                scroll_view.scrollBy(0, 0)
+                handler.removeCallbacks(null)
+            }
+
+            val imageView = view as ImageView
+            imageView.setImageResource(backgroundImage)
         }
 
         speedFabIcon.setOnClickListener { view: View? ->
-            var backgroundImage = 0
+            val backgroundImage: Int
             when (speedMode) {
                 Speed.NORMAL -> {
                     backgroundImage = R.drawable.ic_forward_5_black_24dp
