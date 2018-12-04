@@ -1,19 +1,26 @@
 package com.nepali.echord.detailsong
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.ImageView
 import com.nepali.echord.NepaliChordConstant.Companion.SONG_DETAIL_INTENT
 import com.nepali.echord.R
 import com.nepali.echord.model.Song
 import com.nepali.echord.model.SongDetail
+import kotlinx.android.synthetic.main.activity_song_detail.*
 import kotlinx.android.synthetic.main.song_detail_bottom_sheet.*
 import kotlinx.android.synthetic.main.song_detail_main_content.*
 import org.jetbrains.anko.AnkoLogger
 
+
 class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailView, AnkoLogger {
     private var presenter: SongDetailPresenter = SongDetailPresenter(this)
+    private val handler = Handler()
+    private var speedMode = Speed.NORMAL
+    private var currentSpeed = 300L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,23 +33,47 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         hideSystemUI()
         presenter.fetchSongDetail(song.songId!!)
 
-//        GlideApp.with(this).load(R.drawable.ic_account_circle_black_24dp)
-//                .placeholder(R.drawable.ic_account_circle_black_24dp)
-//                .error(R.drawable.ic_account_circle_black_24dp)
-//                .apply(RequestOptions.bitmapTransform(RoundedCornersTransformation(50, 2)))
-//                .into(artist_image_icon_detail)
+        playFabIcon.setOnClickListener { v: View? ->
+            setSong(song)
+            mScrollDown.run()
+        }
 
-//        favorite_icon_detail.setOnClickListener { v: View? ->
-//
-//            Log.i(TAG, "Clicked " + song.isFavorite)
-//            setSong(song)
-//        }
+        speedFabIcon.setOnClickListener { view: View? ->
+            var backgroundImage = 0
+            when (speedMode) {
+                Speed.NORMAL -> {
+                    backgroundImage = R.drawable.ic_forward_5_black_24dp
+                    speedMode = Speed.FAST
+                    currentSpeed = 200
+                    handler.removeCallbacksAndMessages(null)
+                    mScrollDown.run()
+                }
+                Speed.FAST -> {
+                    backgroundImage = R.drawable.ic_forward_10_black_24dp
+                    speedMode = Speed.FLASH
+                    currentSpeed = 100
+                    handler.removeCallbacksAndMessages(null)
+                    mScrollDown.run()
+                }
+                Speed.FLASH -> {
+                    backgroundImage = R.drawable.ic_forward_30_black_24dp
+                    speedMode = Speed.NORMAL
+                    currentSpeed = 300
+                    handler.removeCallbacksAndMessages(null)
+                    mScrollDown.run()
+                }
+            }
+            val imageView = view as ImageView
+            imageView.setImageResource(backgroundImage)
+        }
+    }
 
-//        favoriteFabIcon.setOnClickListener { view ->
-//            Snackbar.make(view, "This is my favorite", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
-//            setSong(song)
-//        }
+    private val mScrollDown = object : Runnable {
+        override fun run() {
+//            webView.scrollBy(0, 10)
+            scroll_view.scrollBy(0, 10)
+            handler.postDelayed(this, currentSpeed)
+        }
     }
 
     private fun setSong(song: Song) {
@@ -87,5 +118,9 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+    }
+
+    enum class Speed {
+        NORMAL, FAST, FLASH
     }
 }
