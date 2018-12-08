@@ -177,4 +177,6 @@ Lahure Dai Ko Relimai Relimai
     <string name="singer_icon">singer icon</string>
     <string name="no_data_available">No Data Available</string>
     <string name="favorite_image_button">Favorite image button</string>
+    <string name="tablature">T</string>
+    <string name="chords">C</string>
 </resources>
