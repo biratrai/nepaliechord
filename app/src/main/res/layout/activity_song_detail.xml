@@ -12,30 +12,23 @@
         android:id="@+id/speedFabIcon"
         android:layout_width="65dp"
         android:layout_height="65dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="80dp"
         android:tint="@android:color/white"
         app:backgroundTint="@color/orange"
-        android:layout_marginEnd="4dp"
+        app:fabSize="auto"
         app:layout_anchor="@id/playFabIcon"
         app:layout_anchorGravity="top|end"
         app:rippleColor="@color/primaryDarkColor"
-        app:srcCompat="@drawable/ic_forward_5_black_24dp"
-        app:fabSize="auto"
-        android:layout_marginBottom="90dp"/>
-
-    <View
-        android:id="@+id/dummy"
-        android:layout_width="1dp"
-        android:layout_height="16dp"
-        app:layout_anchor="@id/speedFabIcon"
-        app:layout_anchorGravity="top|right|end" />
+        app:srcCompat="@drawable/ic_forward_5_black_24dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/playFabIcon"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:tint="@android:color/white"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="10dp"
+        android:tint="@android:color/white"
         app:backgroundTint="@color/orange"
         app:layout_anchor="@id/song_detail_bottom_sheet"
         app:layout_anchorGravity="top|end"
