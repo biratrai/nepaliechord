@@ -30,7 +30,7 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         val song: Song = intent.extras.get(SONG_DETAIL_INTENT) as Song
         songTitleName.text = song.songTitle
         webView.settings.javaScriptEnabled = true
-        webView.setBackgroundColor(ContextCompat.getColor(this, R.color.white_70))
+//        webView.setBackgroundColor(ContextCompat.getColor(this, R.color.white_70))
         hideSystemUI()
         presenter.fetchSongDetail(song.songId!!)
 
