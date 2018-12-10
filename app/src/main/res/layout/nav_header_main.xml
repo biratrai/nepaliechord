@@ -12,7 +12,7 @@
     android:weightSum="10"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView_nav_header"
         android:layout_width="wrap_content"
         android:layout_weight="7"

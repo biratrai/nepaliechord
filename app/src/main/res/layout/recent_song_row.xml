@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         app:layout_constraintRight_toLeftOf="@+id/twenty_percentage_guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/twenty_percentage_guideline"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             tools:text="Mero Sansar" />
     </LinearLayout>
 
-    <androidx.constraintlayout.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/eighty_percentage_guideline"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
@@ -64,6 +64,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/eighty_percentage_guideline"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
