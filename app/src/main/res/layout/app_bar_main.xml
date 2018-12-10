@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainContent"
@@ -7,34 +7,22 @@
     android:fitsSystemWindows="true"
     tools:context="com.nepali.echord.mainsong.MainSongActivity">
 
-    <include layout="@layout/app_tool_bar"/>
+    <include layout="@layout/app_tool_bar" />
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
         android:text="@string/title_home"
-        tools:background="@color/secondaryDarkColor"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
-        app:layout_constraintTop_toBottomOf="@id/appbar">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        tools:background="@color/secondaryDarkColor" />
 
-        <!--<android.support.v4.view.PagerTabStrip-->
-            <!--android:id="@+id/pager_header"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="top"-->
-            <!--android:paddingTop="4dp"-->
-            <!--android:paddingBottom="4dp"-->
-            <!--android:textAppearance="@style/PagerTabStripText" />-->
-    </android.support.v4.view.ViewPager>
-
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -47,4 +35,4 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.ConstraintLayout>

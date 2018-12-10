@@ -1,9 +1,9 @@
 package com.nepali.echord.mainsong
 
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment
 import com.nepali.echord.favoritesong.FavoriteSongFragment
@@ -15,15 +15,16 @@ import com.nepali.echord.recentsong.RecentSongFragment
 
 class MainActivityViewPagerAdapter(fm: FragmentManager, private val context: Context) : SmartFragmentStatePagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment? {
+    override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> return AllSongFragment.newInstance("Songs")
             1 -> return FavoriteSongFragment.newInstance()
             2 -> return RecentSongFragment.newInstance()
-            else ->
+            else -> {
                 Log.e(TAG, "Not defined")
+                return AllSongFragment.newInstance("Songs")
+            }
         }
-        return null
     }
 
     override fun getCount(): Int {

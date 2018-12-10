@@ -2,12 +2,12 @@ package com.nepali.echord.recentsong
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nepali.echord.BaseFragment
 import com.nepali.echord.R
 import com.nepali.echord.model.Song
@@ -65,7 +65,7 @@ class RecentSongFragment : BaseFragment(), AnkoLogger {
         listener = null
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnRecentSongFragmentItemListener) {
             listener = context

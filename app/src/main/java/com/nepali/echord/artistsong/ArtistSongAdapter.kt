@@ -2,12 +2,12 @@ package com.nepali.echord.artistsong
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.nepali.echord.NepaliChordConstant.Companion.SONG_DETAIL_INTENT
 import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment.OnAllSongFragmentItemListener

@@ -2,10 +2,9 @@ package com.nepali.echord.detailsong
 
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.nepali.echord.NepaliChordConstant.Companion.SONG_DETAIL_INTENT
 import com.nepali.echord.R
 import com.nepali.echord.model.Song

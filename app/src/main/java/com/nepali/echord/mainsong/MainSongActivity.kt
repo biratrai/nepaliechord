@@ -7,15 +7,15 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v4.view.ViewPager.OnPageChangeListener
-import android.support.v7.app.ActionBar
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.app.AppCompatDelegate
 import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.GravityCompat
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nepali.echord.NepaliChordConstant
 import com.nepali.echord.R
 import com.nepali.echord.R.id.*
@@ -68,8 +68,8 @@ class MainSongActivity : AppCompatActivity()
 
     }
 
-    private fun onPageChangeListener(): OnPageChangeListener {
-        return object : OnPageChangeListener {
+    private fun onPageChangeListener(): ViewPager.OnPageChangeListener {
+        return object : ViewPager.OnPageChangeListener {
 
             // This method will be invoked when a new page becomes selected.
             override fun onPageSelected(position: Int) {

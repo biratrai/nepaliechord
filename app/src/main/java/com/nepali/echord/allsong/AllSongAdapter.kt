@@ -1,12 +1,12 @@
 package com.nepali.echord.allsong
 
-import android.support.v7.app.AppCompatDelegate
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.recyclerview.widget.RecyclerView
 import com.nepali.echord.R
 import com.nepali.echord.allsong.AllSongFragment.OnAllSongFragmentItemListener
 import com.nepali.echord.model.SingerDetail

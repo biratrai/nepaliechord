@@ -1,12 +1,11 @@
 package com.nepali.echord.mainsong
 
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
 import android.util.Log
 import android.util.SparseArray
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.nepali.echord.BaseFragment
-
 import hugo.weaving.DebugLog
 
 /*

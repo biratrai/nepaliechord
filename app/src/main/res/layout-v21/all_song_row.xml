@@ -9,7 +9,7 @@
     <!--app:cardCornerRadius="8dp"-->
     <!--app:cardElevation="8dp">-->
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +27,7 @@
             app:layout_constraintRight_toLeftOf="@+id/twenty_percentage_guideline"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.Guideline
             android:id="@+id/twenty_percentage_guideline"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 tools:text="Sugam Pokhrel" />
         </LinearLayout>
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.Guideline
             android:id="@+id/eighty_percentage_guideline"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
@@ -80,5 +80,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/eighty_percentage_guideline"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.ConstraintLayout>
 <!--</android.support.v7.widget.CardView>-->
