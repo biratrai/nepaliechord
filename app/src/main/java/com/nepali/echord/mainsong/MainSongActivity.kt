@@ -48,8 +48,10 @@ class MainSongActivity : AppCompatActivity()
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_NepaliChordAppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         viewPager.adapter = pagerAdapter
 
