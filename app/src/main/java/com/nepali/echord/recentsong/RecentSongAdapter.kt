@@ -10,6 +10,9 @@ import com.nepali.echord.model.Song
 import com.nepali.echord.util.inflate
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 /**
  * [RecyclerView.Adapter] that can display a [Song] and makes a call to the
@@ -27,14 +30,12 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
         holder.item = list[position]
         holder.songTitleView.text = list[position].artistName
         holder.artistNameView.text = list[position].songTitle
-
+        val currentDate = Date(list[position].timeStamp)
+        val dateFormat = SimpleDateFormat("dd/MM/yy", Locale.getDefault())
+        holder.timeStampTextView.text = dateFormat.format(currentDate)
         holder.view.setOnClickListener {
             listener?.onRecentFragmentInteraction(list[position])
         }
-
-//        holder.view.favorite_icon.setOnClickListener { v: View? ->
-//            Log.i(TAG, "View $v")
-//        }
     }
 
     override fun getItemCount(): Int {
@@ -48,13 +49,10 @@ class RecentSongAdapter(private var list: List<Song>, private val listener: Rece
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val songTitleView: TextView = view.findViewById<View>(R.id.favorite_song_title) as TextView
-        val artistNameView: TextView = view.findViewById<View>(R.id.favorite_artist_name) as TextView
+        val songTitleView: TextView = view.findViewById(R.id.favorite_song_title)
+        val artistNameView: TextView = view.findViewById(R.id.favorite_artist_name)
+        val timeStampTextView: TextView = view.findViewById(R.id.date_text)
         var item: Song? = null
-
-        override fun toString(): String {
-            return super.toString() + " '" + artistNameView.text + "'"
-        }
     }
 
     companion object {

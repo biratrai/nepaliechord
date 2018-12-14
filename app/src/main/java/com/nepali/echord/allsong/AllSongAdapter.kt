@@ -28,7 +28,7 @@ class AllSongAdapter(private var list: ArrayList<SingerDetail>, private val list
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.item = list[position]
-        holder.songTitleView.text = list[position].singerName
+        holder.artistNameView.text = list[position].singerName
         holder.singerIcon.loadCircularImage(list[position].singerPhoto!!)
         holder.view.setOnClickListener {
             listener!!.onAllSongFragmentInteraction(holder.item!!)
@@ -49,15 +49,10 @@ class AllSongAdapter(private var list: ArrayList<SingerDetail>, private val list
     }
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val songTitleView: TextView = view.findViewById<View>(R.id.song_title) as TextView
         val artistNameView: TextView = view.findViewById<View>(R.id.artist_name) as TextView
         val favoriteIcon: ImageView = view.findViewById(R.id.favorite_icon) as ImageView
         val singerIcon: ImageView = view.findViewById(R.id.singerIcon) as ImageView
         var item: SingerDetail? = null
-
-        override fun toString(): String {
-            return super.toString() + " '" + artistNameView.text + "'"
-        }
     }
 
     companion object {
