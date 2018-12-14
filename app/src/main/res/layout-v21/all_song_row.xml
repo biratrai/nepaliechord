@@ -34,21 +34,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/song_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginTop="@dimen/text_margin"
-            android:layout_marginRight="@dimen/text_margin"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.ActionBar.Title"
-            tools:text="Mero Sansar timi nai hau" />
-
-        <TextView
             android:id="@+id/artist_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle"
+            android:textAppearance="@android:style/TextAppearance.Medium"
             tools:text="Sugam Pokhrel" />
     </LinearLayout>
 
@@ -64,9 +54,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:background="@drawable/ic_favorite_red_24dp"
         android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/eighty_percentage_guideline"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout><!--</android.support.v7.widget.CardView>-->
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_favorite_red_24dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

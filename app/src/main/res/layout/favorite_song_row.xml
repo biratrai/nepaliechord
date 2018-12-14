@@ -9,11 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/icon_margin"
-        app:srcCompat="@drawable/ic_account_circle_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/twenty_percentage_guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/twenty_percentage_guideline"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle"
+            android:textAppearance="@android:style/TextAppearance.Medium"
             tools:text="Sugam Pokhrel" />
 
         <TextView
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:textAppearance="@android:style/TextAppearance.Holo.Widget.ActionBar.Title"
+            android:textAppearance="@android:style/TextAppearance.Small"
             tools:text="Mero Sansar" />
     </LinearLayout>
 
@@ -60,10 +60,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/icon_margin"
-        app:srcCompat="@drawable/ic_favorite_red_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/eighty_percentage_guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_favorite_red_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
