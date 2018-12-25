@@ -35,9 +35,15 @@ class ArtistSongAdapter(private var list: MutableList<Song>
         holder.item = list[position]
         holder.songTitleView.text = list[position].songTitle
         holder.artistNameView.text = list[position].artistName
-
-        if (list[position].isFavorite)
+        if (list[position].chord) {
+            holder.chordText.visibility = View.VISIBLE
+        }
+        if (list[position].tab) {
+            holder.tabText.visibility = View.VISIBLE
+        }
+        if (list[position].isFavorite) {
             holder.favoriteIcon.visibility = View.VISIBLE
+        }
         holder.view.setOnClickListener { view: View? ->
             info("clicked$view")
             val intent = Intent(context, SongDetailActivity::class.java)
