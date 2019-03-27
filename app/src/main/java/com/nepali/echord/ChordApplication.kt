@@ -1,6 +1,5 @@
 package com.nepali.echord
 
-import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 
 /**
@@ -10,8 +9,11 @@ import dagger.android.DaggerApplication
  */
 class ChordApplication : DaggerApplication() {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerMainApplicationComponent.builder().application(this).build()
+    override fun applicationInjector() = seedBuilder(DaggerMainApplicationComponent.builder())
+
+    private fun seedBuilder(builder: MainApplicationComponent.Builder): MainApplicationComponent {
+        builder.seedInstance(this)
+        return builder.build()
     }
 
 }

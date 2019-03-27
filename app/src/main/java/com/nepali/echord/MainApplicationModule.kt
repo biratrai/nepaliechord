@@ -17,5 +17,5 @@ import dagger.Module
 abstract class MainApplicationModule {
     //expose Application as an injectable context
     @Binds
-    abstract fun bindContext(application: Application): Context
+    abstract fun bindContext(application: ChordApplication): Context
 }
