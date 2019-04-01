@@ -13,10 +13,12 @@ import kotlinx.android.synthetic.main.activity_song_detail.*
 import kotlinx.android.synthetic.main.song_detail_bottom_sheet.*
 import kotlinx.android.synthetic.main.song_detail_main_content.*
 import org.jetbrains.anko.AnkoLogger
+import javax.inject.Inject
 
 
 class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailView, AnkoLogger {
-    private var presenter: SongDetailPresenter = SongDetailPresenter(this)
+    @Inject
+    lateinit var presenter: SongDetailPresenter
     private val handler = Handler()
     private var speedMode = Speed.NORMAL
     private var currentSpeed = 300L
