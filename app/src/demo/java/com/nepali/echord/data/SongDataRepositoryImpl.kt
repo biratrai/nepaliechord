@@ -10,8 +10,9 @@ import com.nepali.echord.model.SongDetail
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import java.util.*
+import javax.inject.Inject
 
-class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger {
+class SongDataRepositoryImpl @Inject constructor(context: Context) : SongDataRepository, AnkoLogger {
     private var context: Context = context
 
     /**
