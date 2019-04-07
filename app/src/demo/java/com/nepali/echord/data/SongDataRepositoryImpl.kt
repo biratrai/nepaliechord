@@ -1,6 +1,5 @@
 package com.nepali.echord.data
 
-import android.content.Context
 import com.nepali.echord.artistsong.ArtistSongActivityPresenter
 import com.nepali.echord.detailsong.SongDetailContract
 import com.nepali.echord.mainsong.MainSongActivityPresenter
@@ -12,8 +11,7 @@ import org.jetbrains.anko.info
 import java.util.*
 import javax.inject.Inject
 
-class SongDataRepositoryImpl @Inject constructor(context: Context) : SongDataRepository, AnkoLogger {
-    private var context: Context = context
+class SongDataRepositoryImpl @Inject constructor() : SongDataRepository, AnkoLogger {
 
     /**
      * Function to get Song By Artist ID
