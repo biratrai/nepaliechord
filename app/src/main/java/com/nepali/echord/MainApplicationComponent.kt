@@ -1,5 +1,10 @@
 package com.nepali.echord
 
+import android.app.Application
+import com.nepali.echord.data.RepositoryModule
+import com.nepali.echord.data.SongDataRepository
+import com.nepali.echord.detailsong.DetailSongModule
+import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -20,7 +25,10 @@ import javax.inject.Singleton
 @Component(
         modules = [
             MainApplicationModule::class,
-            AndroidSupportInjectionModule::class
+            AndroidSupportInjectionModule::class,
+            ActivityBindingModule::class,
+            RepositoryModule::class,
+            DetailSongModule::class
         ]
 )
 interface MainApplicationComponent : AndroidInjector<ChordApplication> {
@@ -28,9 +36,15 @@ interface MainApplicationComponent : AndroidInjector<ChordApplication> {
     // never having to instantiate any modules or say which module we are passing the application to.
     // Application will just be provided into our app graph now.
 
+    abstract fun getSongRepository(): SongDataRepository
+
     @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<ChordApplication>() {
-        abstract override fun build(): MainApplicationComponent
+    interface Builder {
+
+        @BindsInstance
+        fun application(application: Application): MainApplicationComponent.Builder
+
+        fun build(): MainApplicationComponent
     }
 
 }
