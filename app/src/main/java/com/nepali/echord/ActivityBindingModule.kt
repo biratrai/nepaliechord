@@ -17,5 +17,5 @@ abstract class ActivityBindingModule {
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = [DetailSongModule::class])
-    internal abstract fun taskDetailActivity(): SongDetailActivity
+    internal abstract fun songDetailActivity(): SongDetailActivity
 }
