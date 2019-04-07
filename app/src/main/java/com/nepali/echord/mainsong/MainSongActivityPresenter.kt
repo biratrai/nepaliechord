@@ -1,6 +1,5 @@
 package com.nepali.echord.mainsong
 
-import android.content.Context
 import com.nepali.echord.data.SongDataRepositoryImpl
 import com.nepali.echord.mainsong.MainSongContract.MainSongPresenter
 import com.nepali.echord.model.SingerDetail
@@ -12,7 +11,7 @@ import com.nepali.echord.model.Song
 
 class MainSongActivityPresenter(private val songView: MainSongContract.MainSongView) : MainSongPresenter {
 
-    private val songDataRepository: SongDataRepositoryImpl = SongDataRepositoryImpl(songView as Context)
+    private val songDataRepository: SongDataRepositoryImpl = SongDataRepositoryImpl()
 
     /**
      * Function that fetches song for the particular View pager currentFragment
