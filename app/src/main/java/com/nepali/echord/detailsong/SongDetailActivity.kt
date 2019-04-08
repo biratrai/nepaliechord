@@ -4,19 +4,21 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import com.nepali.echord.NepaliChordConstant.Companion.SONG_DETAIL_INTENT
 import com.nepali.echord.R
 import com.nepali.echord.model.Song
 import com.nepali.echord.model.SongDetail
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_song_detail.*
 import kotlinx.android.synthetic.main.song_detail_bottom_sheet.*
 import kotlinx.android.synthetic.main.song_detail_main_content.*
 import org.jetbrains.anko.AnkoLogger
+import javax.inject.Inject
 
 
-class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailView, AnkoLogger {
-    private var presenter: SongDetailPresenter = SongDetailPresenter(this)
+class SongDetailActivity : DaggerAppCompatActivity(), SongDetailContract.SongDetailView, AnkoLogger {
+    @Inject
+    lateinit var presenter: SongDetailPresenter
     private val handler = Handler()
     private var speedMode = Speed.NORMAL
     private var currentSpeed = 300L
@@ -26,6 +28,7 @@ class SongDetailActivity : AppCompatActivity(), SongDetailContract.SongDetailVie
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_song_detail)
 
+        presenter.setView(this)
         val song: Song = intent.extras.get(SONG_DETAIL_INTENT) as Song
         songTitleName.text = song.songTitle
         webView.settings.javaScriptEnabled = true

@@ -12,6 +12,8 @@ interface SongDetailContract {
     }
 
     interface SongDetailPresenter {
+        fun setView(songDetailView: SongDetailView)
+
         fun fetchSongDetail(singerId: String)
 
         fun onSongDataFetched(songDetail: SongDetail)

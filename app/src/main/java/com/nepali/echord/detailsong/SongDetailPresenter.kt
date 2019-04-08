@@ -1,11 +1,13 @@
 package com.nepali.echord.detailsong
 
-import android.content.Context
-import com.nepali.echord.data.SongDataRepositoryImpl
+import com.nepali.echord.data.SongDataRepository
 import com.nepali.echord.model.SongDetail
+import javax.inject.Inject
 
-class SongDetailPresenter(private val songDetailView: SongDetailContract.SongDetailView) : SongDetailContract.SongDetailPresenter {
-    private val songDataRepository: SongDataRepositoryImpl = SongDataRepositoryImpl(songDetailView as Context)
+class SongDetailPresenter @Inject constructor(private val songDataRepository: SongDataRepository)
+    : SongDetailContract.SongDetailPresenter {
+
+    private lateinit var songDetailView: SongDetailContract.SongDetailView
 
     override fun fetchSongDetail(singerId: String) {
         songDataRepository.getSongDetailById(singerId, this)
@@ -13,5 +15,9 @@ class SongDetailPresenter(private val songDetailView: SongDetailContract.SongDet
 
     override fun onSongDataFetched(songDetail: SongDetail) {
         songDetailView.displaySongDetail(songDetail)
+    }
+
+    override fun setView(songDetailView: SongDetailContract.SongDetailView) {
+        this.songDetailView = songDetailView
     }
 }

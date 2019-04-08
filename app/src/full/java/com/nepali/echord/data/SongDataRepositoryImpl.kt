@@ -1,13 +1,13 @@
 package com.nepali.echord.data
 
-import android.content.Context
 import com.nepali.echord.artistsong.ArtistSongActivityPresenter
 import com.nepali.echord.detailsong.SongDetailContract
 import com.nepali.echord.mainsong.MainSongActivityPresenter
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import javax.inject.Inject
 
-class SongDataRepositoryImpl(context: Context) : SongDataRepository, AnkoLogger {
+class SongDataRepositoryImpl @Inject constructor() : SongDataRepository, AnkoLogger {
     override fun handleFavoriteSong(songId: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
