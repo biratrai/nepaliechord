@@ -4,6 +4,7 @@ import android.app.Application
 import com.nepali.echord.data.RepositoryModule
 import com.nepali.echord.data.SongDataRepository
 import com.nepali.echord.detailsong.DetailSongModule
+import com.nepali.echord.mainsong.MainSongModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -28,7 +29,8 @@ import javax.inject.Singleton
             AndroidSupportInjectionModule::class,
             ActivityBindingModule::class,
             RepositoryModule::class,
-            DetailSongModule::class
+            DetailSongModule::class,
+            MainSongModule::class
         ]
 )
 interface MainApplicationComponent : AndroidInjector<ChordApplication> {
@@ -36,7 +38,7 @@ interface MainApplicationComponent : AndroidInjector<ChordApplication> {
     // never having to instantiate any modules or say which module we are passing the application to.
     // Application will just be provided into our app graph now.
 
-    abstract fun getSongRepository(): SongDataRepository
+    fun getSongRepository(): SongDataRepository
 
     @Component.Builder
     interface Builder {
