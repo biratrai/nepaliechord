@@ -11,7 +11,6 @@ import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.viewpager.widget.ViewPager
@@ -26,6 +25,7 @@ import com.nepali.echord.favoritesong.FavoriteSongFragment
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
 import com.nepali.echord.recentsong.RecentSongFragment
+import dagger.android.support.DaggerAppCompatActivity
 import hugo.weaving.DebugLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.all_song_row.*
@@ -33,8 +33,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.app_tool_bar.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import javax.inject.Inject
 
-class MainSongActivity : AppCompatActivity()
+class MainSongActivity : DaggerAppCompatActivity()
         , MainSongContract.MainSongView
         , AllSongFragment.OnAllSongFragmentItemListener
         , FavoriteSongFragment.OnFavoriteFragmentItemListener
@@ -42,15 +43,19 @@ class MainSongActivity : AppCompatActivity()
         , AnkoLogger {
 
     private var pagerAdapter: SmartFragmentStatePagerAdapter = MainActivityViewPagerAdapter(supportFragmentManager, this)
-    private var presenter: MainSongActivityPresenter = MainSongActivityPresenter(this)
     private lateinit var colorAnimation: ValueAnimator
     private var isFirst = true
+
+    @Inject
+    lateinit var presenter: MainSongActivityPresenter
 
     //region Lifecycle methods
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_NepaliChordAppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        presenter.setView(this)
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         viewPager.adapter = pagerAdapter
