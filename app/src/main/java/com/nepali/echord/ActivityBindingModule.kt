@@ -2,6 +2,8 @@ package com.nepali.echord
 
 import com.nepali.echord.detailsong.DetailSongModule
 import com.nepali.echord.detailsong.SongDetailActivity
+import com.nepali.echord.mainsong.MainSongActivity
+import com.nepali.echord.mainsong.MainSongModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -18,4 +20,8 @@ abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = [DetailSongModule::class])
     internal abstract fun songDetailActivity(): SongDetailActivity
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = [MainSongModule::class])
+    internal abstract fun songMainActivity(): MainSongActivity
 }
