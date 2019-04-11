@@ -4,12 +4,13 @@ import com.nepali.echord.data.SongDataRepository
 import com.nepali.echord.mainsong.MainSongContract.MainSongPresenter
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
+import javax.inject.Inject
 
 /**
  * Presenter for [MainSongActivity]
  */
 
-class MainSongActivityPresenter(private val songDataRepository: SongDataRepository) : MainSongPresenter {
+class MainSongActivityPresenter @Inject constructor(private val songDataRepository: SongDataRepository) : MainSongPresenter {
     private lateinit var songView: MainSongContract.MainSongView
 
     override fun setView(mainSongView: MainSongContract.MainSongView) {
