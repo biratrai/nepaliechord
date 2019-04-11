@@ -1,6 +1,6 @@
 package com.nepali.echord.mainsong
 
-import com.nepali.echord.data.SongDataRepositoryImpl
+import com.nepali.echord.data.SongDataRepository
 import com.nepali.echord.mainsong.MainSongContract.MainSongPresenter
 import com.nepali.echord.model.SingerDetail
 import com.nepali.echord.model.Song
@@ -9,9 +9,12 @@ import com.nepali.echord.model.Song
  * Presenter for [MainSongActivity]
  */
 
-class MainSongActivityPresenter(private val songView: MainSongContract.MainSongView) : MainSongPresenter {
+class MainSongActivityPresenter(private val songDataRepository: SongDataRepository) : MainSongPresenter {
+    private lateinit var songView: MainSongContract.MainSongView
 
-    private val songDataRepository: SongDataRepositoryImpl = SongDataRepositoryImpl()
+    override fun setView(mainSongView: MainSongContract.MainSongView) {
+        songView = mainSongView
+    }
 
     /**
      * Function that fetches song for the particular View pager currentFragment
