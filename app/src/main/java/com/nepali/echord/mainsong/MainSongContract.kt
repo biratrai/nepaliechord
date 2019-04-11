@@ -15,6 +15,7 @@ interface MainSongContract {
     }
 
     interface MainSongPresenter {
+        fun setView(mainSongView: MainSongView)
         fun fetchSong(position: Int)
 
         fun onArtistDataFetched(singerList: MutableList<SingerDetail>)
